@@ -4,6 +4,7 @@ class IndexController
 {
     public function index()
     {
-        echo 'Iz index kontrolera';
+        $view = new View();
+        $view->render('index');
     }
 }
