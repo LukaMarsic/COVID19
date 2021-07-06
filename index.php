@@ -1,6 +1,9 @@
 <?php
 
-echo '<pre>';
-//print_r($_SERVER);
-echo 'Testiranje 2 ';
-echo '<pre>';
+session_start();
+
+
+//echo __DIR__;
+define('BP',__DIR__ . DIRECTORY_SEPARATOR);
+
+echo BP;
