@@ -37,4 +37,10 @@ class App
     }
 }
 
+public static function config($kljuc)
+{
+    $config=include BP . 'app/config.php';
+    return $config[$kljuc];
+}
+
 }
