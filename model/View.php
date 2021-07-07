@@ -11,6 +11,7 @@ class View
 
     public function render($stranicaZaRender,$parametri=[])
     {
+        print_r($parametri);
         ob_start();
         extract($parametri);
         include BP . 'view' . DIRECTORY_SEPARATOR . 
