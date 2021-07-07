@@ -46,8 +46,10 @@ class IndexController extends Controller
             return;
         }
 
-        //siguran sam da su email i lozinka postavljeni
-        // i sada mogu ići u bazu provjeriti ih - ALI NE DANAS
+        
+
+
+
         if(!($_POST['email']==='edunova@edunova.hr' && 
             $_POST['lozinka']==='e') ){
                 $this->loginView($_POST['email'],'Neispravna kombinacija emaila i lozinke');
@@ -67,11 +69,16 @@ class IndexController extends Controller
             'poruka'=>$poruka
         ]);
     }
-    /*
-    public function test()
+    
+             public function test()
+    
     {
-        echo password_hash('o',PASSWORD_BCRYPT);
+        $veza = DB::getInstanca();
+        $izraz=$veza->prepare('select * from smjer');
+        $izraz->execute();
+        $rezultati = $izraz->fetchAll();
+        print_r($rezultati);
         
     }
-    */
+    
 }
