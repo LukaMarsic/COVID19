@@ -47,16 +47,29 @@ class IndexController extends Controller
         }
 
         
+        $veza = DB::getInstanca();
+        $izraz=$veza->prepare('
+        
+            select * from operater where email=:email
+        
+        ');
+        $izraz->execute(['email'=>$_POST['email']]);
+        $rezultat = $izraz->fetch();
 
-
-
-        if(!($_POST['email']==='edunova@edunova.hr' && 
-            $_POST['lozinka']==='e') ){
-                $this->loginView($_POST['email'],'Neispravna kombinacija emaila i lozinke');
-                return;
+        if($rezultat==null){
+            $this->loginView($_POST['email'],'Email ne postoji u bazi');
+            return;
         }
 
-        $_SESSION['autoriziran']='Edunova Korisnik';
+
+
+        if(!password_verify($_POST['lozinka'],$rezultat->lozinka)){
+            $this->loginView($_POST['email'],'Kombinacija email i lozinka ne odgovaraju');
+            return;
+        }
+
+        unset($rezultat->lozinka);
+        $_SESSION['autoriziran']=$rezultat;
         $np = new NadzornaplocaController();
         $np->index();
 
@@ -69,7 +82,7 @@ class IndexController extends Controller
             'poruka'=>$poruka
         ]);
     }
-    
+    /*
              public function test()
     
     {
@@ -80,5 +93,5 @@ class IndexController extends Controller
         print_r($rezultati);
         
     }
-    
+    */
 }
