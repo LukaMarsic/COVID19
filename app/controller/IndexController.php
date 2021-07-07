@@ -1,3 +1,4 @@
+
 <?php
 
 class IndexController extends Controller
@@ -46,21 +47,8 @@ class IndexController extends Controller
             return;
         }
 
-        
-        $veza = DB::getInstanca();
-        $izraz=$veza->prepare('
-        
-            select * from operater where email=:email
-        
-        ');
-        $izraz->execute(['email'=>$_POST['email']]);
-        $rezultat = $izraz->fetch();
-
-        if($rezultat==null){
-            $this->loginView($_POST['email'],'Email ne postoji u bazi');
-            return;
-        }
-
+    
+    
 
 
         if(!password_verify($_POST['lozinka'],$rezultat->lozinka)){
@@ -82,16 +70,18 @@ class IndexController extends Controller
             'poruka'=>$poruka
         ]);
     }
-    /*
-             public function test()
+
     
+    /*
+    public function test()
     {
+        
         $veza = DB::getInstanca();
         $izraz=$veza->prepare('select * from smjer');
         $izraz->execute();
         $rezultati = $izraz->fetchAll();
         print_r($rezultati);
-        
     }
+    
     */
 }
