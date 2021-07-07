@@ -1,4 +1,4 @@
-# c:\xampp\mysql\bin\mysql -uedunova -pedunova < d:\skriptapp22.sql
+ c:\xampp\mysql\bin\mysql -uedunova -pedunova < D:\pp22\polaznik20.edunova.hr\Stanko-website\skriptapp22.sql
 drop database if exists edunovapp22;
 create database edunovapp22 character set utf8;
 use edunovapp22;
@@ -12,7 +12,22 @@ create table operater(
     uloga varchar(10) not null
 );
 
-insert into operater values (null,'edunova@edunova.hr')
+insert into operater values(null,'edunova@edunova.hr',
+'$2y$10$Revp1k7DnQ0b1fClBuoZ8.O0w2RyIsXyTU51yqHz9mk7SLB/it9GO',
+'Administrator','Edunova','admin');
+
+insert into operater values(null,'oper@edunova.hr',
+'$2y$10$yECpl/AKVYMutwEcMTJOZeUWwJ8kk7EtafwXdhfjYqs3UX2pEUTFu',
+'Operater','Edunova','oper');
+
+create table smjer(
+    sifra int not null primary key auto_increment,
+    naziv varchar(50) not null,
+    trajanje int not null,
+    cijena decimal(18,2),
+    verificiran boolean
+);
+
 create table grupa(
     sifra int not null primary key auto_increment,
     naziv varchar(20) not null,
@@ -124,7 +139,6 @@ insert into osoba (sifra,ime,prezime,oib,email)
 values (null,'Shaquille','O''Neal',null,'shaki@gmail.com');
 
 insert into predavac (osoba) values (17),(18);
-
 
 
 
