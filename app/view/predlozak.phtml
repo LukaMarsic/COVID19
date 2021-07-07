@@ -1,18 +1,19 @@
-
 <!doctype html>
 <html class="no-js" lang="en">
   <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Foundation for Sites</title>
-    <link rel="stylesheet" href="assets/css/foundation.css">
+  <?php include_once 'predlozak/head.phtml' ?>
   </head>
 <body>
 
+ 
+<div class="grid-container">
+        <?php include_once 'predlozak/izbornik.phtml' ?>
+        <div class="callout">
+            <?=$sadrzaj?>
+        </div>
+    </div>
+<?php include_once 'predlozak/podnozje.phtml' ?>
+<?php include_once 'predlozak/skripte.phtml' ?>
 
-
-<script src="assets/js/vendor.js"></script>
-<script src="assets/js/foundation.js"></script>
 </body>
 </html>

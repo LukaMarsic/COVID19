@@ -1,15 +1,13 @@
 <?php
 
 // https://medium.com/@noufel.gouirhate/create-your-own-mvc-framework-in-php-af7bd1f0ca19
-
-
 class App
 {
     public static function start()
     {
         $ruta = Request::getRuta();
-        //echo $ruta;
-        $djelovi=explode('/',$ruta);
+       //echo $ruta;
+       $djelovi=explode('/',$ruta);
        //print_r($djelovi);
        $klasa='';
        if(!isset($djelovi[1]) || $djelovi[1]==''){
@@ -33,14 +31,15 @@ class App
            $instanca=new $klasa();
            $instanca->$funkcija();
        }else{
-           echo 'Bradoljuti ' . $klasa . '->' . $funkcija;
+           echo 'Čakklk niti HGSS ne može naći ' . $klasa . '->' . $funkcija;
+       }
     }
-}
 
- public static function config($kljuc)
-{
-    $config=include BP . 'app/config.php';
-    return $config[$kljuc];
-}
+
+    public static function config($kljuc)
+    {
+        $config=include BP . 'config.php';
+        return $config[$kljuc];
+    }
 
 }
