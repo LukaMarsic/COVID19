@@ -33,7 +33,7 @@ class App
            $instanca=new $klasa();
            $instanca->$funkcija();
        }else{
-           echo 'Čak niti HGSS ne može naći ' . $klasa . '->' . $funkcija;
+           echo 'Bradoljuti ' . $klasa . '->' . $funkcija;
     }
 }
 
