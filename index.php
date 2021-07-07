@@ -1,6 +1,15 @@
 
 <?php
 
+//https://stackify.com/display-php-errors/
+// odkomentirati kada želimo vidjeti sva upozorenja i greške
+/*
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+*/
+
+
 
 
 session_start();

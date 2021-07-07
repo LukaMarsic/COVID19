@@ -10,10 +10,9 @@ if($dev){
     ];
 }else{
     $baza=[
-        'server'=>'localhost',
-        'baza'=>'xxxxx',
-        'korisnik'=>'xxxxx',
-        'lozinka'=>'xxxxx'
+        'baza'=>'cesar_pp22',
+        'korisnik'=>'cesar_edunova',
+        'lozinka'=>'edunova123.'
     ];
 }
 return [

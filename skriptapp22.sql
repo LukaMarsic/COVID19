@@ -1,7 +1,11 @@
  c:\xampp\mysql\bin\mysql -uedunova -pedunova < D:\pp22\polaznik20.edunova.hr\Stanko-website\skriptapp22.sql
 drop database if exists edunovapp22;
-create database edunovapp22 character set utf8;
+create database edunovapp22 character set utf8mb4;
 use edunovapp22;
+
+na produkciji promjeniti charset jer je inicijalni krivo postavljen
+alter database cesar_pp22 default character set utf8mb4;
+
 
 create table operater(
     sifra int not null primary key auto_increment,
