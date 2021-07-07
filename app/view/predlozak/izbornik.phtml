@@ -6,9 +6,13 @@
 <div class="top-bar" id="responsive-menu">
   <div class="top-bar-left">
     <ul class="dropdown menu" data-dropdown-menu>
-      <li class="menu-text"><?=App::config('nazivApp')?></li>
-      <li><a href="#0">Two</a></li>
-      <li><a href="#0">Three</a></li>
+    <li>
+        <a href="<?=App::config('url')?>">    
+            <?=App::config('nazivApp')?>
+        </a>
+      </li>
+      <li><a href="<?=App::config('url')?>index/era">ERA</a></li>
+      <li><a href="<?=App::config('url')?>index/kontakt">Kontakt</a></li>
     </ul>
   </div>
   <div class="top-bar-right">
