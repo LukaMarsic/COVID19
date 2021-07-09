@@ -17,7 +17,13 @@
   </div>
   <div class="top-bar-right">
     <ul class="menu">
-      <li>login/logout</li>
+    <li>
+      <?php if(!isset($_SESSION['autoriziran'])): ?>
+        <a href="<?=App::config('url')?>index/login">Autoriziraj</a>
+      <?php else: ?>
+        <a href="<?=App::config('url')?>index/logout">Odjava</a>
+      <?php endif;?>
+      </li>
     </ul>
   </div>
 </div>
