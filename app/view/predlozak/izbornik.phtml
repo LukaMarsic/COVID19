@@ -6,43 +6,18 @@
 <div class="top-bar" id="responsive-menu">
   <div class="top-bar-left">
     <ul class="dropdown menu" data-dropdown-menu>
-      <li>
+    <li>
         <a href="<?=App::config('url')?>">    
             <?=App::config('nazivApp')?>
         </a>
       </li>
-      <?php if(isset($_SESSION['autoriziran'])): ?>
-        <li><a href="<?=App::config('url')?>nadzornaploca/index">Nadzorna ploča</a></li>
-        <li>
-          <a href="#">Programi</a>
-          <ul class="vertical menu">
-            <li><a href="<?=App::config('url')?>smjer/index">Smjerovi</a></li>
-            <li><a href="#">Grupe</a></li>
-            <li><a href="#">Polaznici</a></li>
-            <li><a href="#">Predavači</a></li>
-            <?php if($_SESSION['autoriziran']->uloga=='admin'): ?>
-              <li><a href="#">Operateri</a></li>
-            <?php endif;?>
-          </ul>
-        </li>
-      <?php endif;?>
       <li><a href="<?=App::config('url')?>index/era">ERA</a></li>
       <li><a href="<?=App::config('url')?>index/kontakt">Kontakt</a></li>
     </ul>
   </div>
   <div class="top-bar-right">
     <ul class="menu">
-      <li>
-      <?php if(!isset($_SESSION['autoriziran'])): ?>
-        <a href="<?=App::config('url')?>index/login">Autoriziraj</a>
-      <?php else: ?>
-        
-        
-        <a href="<?=App::config('url')?>index/logout">
-          <?=$_SESSION['autoriziran']->ime?> <?=$_SESSION['autoriziran']->prezime?> Odjava
-        </a>
-      <?php endif;?>
-      </li>
+      <li>login/logout</li>
     </ul>
   </div>
 </div>
