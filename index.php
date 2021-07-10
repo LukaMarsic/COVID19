@@ -1,6 +1,7 @@
 
 <?php
 
+
 //https://stackify.com/display-php-errors/
 // odkomentirati kada želimo vidjeti sva upozorenja i greške
 /*
