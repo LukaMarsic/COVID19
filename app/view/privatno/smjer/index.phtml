@@ -1,1 +1,11 @@
-Smjerovi
+<h1 style="font-size: 1em;">Smjerovi</h1>
+<a href="#">Dodaj novi smjer</a>
+<ul>
+<?php foreach($smjerovi as $smjer): ?>
+    <li>
+        <?=$smjer->naziv?> 
+        <a href="#">Promjeni</a>
+        <a href="#">Obriši</a>
+    </li>
+<?php endforeach; ?>
+</ul>
