@@ -2,9 +2,13 @@
     action="<?=App::config('url')?>smjer/novo"
     method="POST">
   <h4 class="text-center">Dodavanje novog smjera</h4>
-  <label>Naziv
-    <input type="text" name="naziv" value="<?=$smjer->naziv?>">
-  </label>
+  <div class="grid-x grid-padding-x">
+    <div class="cell">
+      <label>Naziv
+        <input type="text" name="naziv" value="<?=$smjer->naziv?>">
+      </label>
+    </div>
+  </div>
 
 
   <div class="grid-x grid-padding-x">
@@ -54,7 +58,14 @@
   </div>
 </div>
 
-<?=$poruka?>
+<div class="grid-x grid-padding-x">
+    <div class="cell">
+     <div class="callout">
+      <?=$poruka?>
+     </div>
+    </div>
+  </div>
+  
 
 <div class="grid-x grid-padding-x">
  
