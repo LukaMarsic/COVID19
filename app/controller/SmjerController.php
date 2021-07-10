@@ -20,7 +20,6 @@ class SmjerController extends AutorizacijaController
     public function novo()
     {
         if($_SERVER['REQUEST_METHOD']==='GET'){
-           
             $this->noviSmjer();
             return;
         }
@@ -32,8 +31,6 @@ class SmjerController extends AutorizacijaController
         $this->index();
     }
 
-
-       
     public function promjena()
     {
         if($_SERVER['REQUEST_METHOD']==='GET'){
@@ -55,7 +52,18 @@ class SmjerController extends AutorizacijaController
         $this->index();
     }
 
+    public function brisanje()
+    {
+        if(!isset($_GET['sifra'])){
+            $ic = new IndexController();
+            $ic->logout();
+            return;
+        }
+        Smjer::obrisiPostojeci($_GET['sifra']);
+        header('location: ' . App::config('url') . 'smjer/index');
        
+    }
+
     private function noviSmjer()
     {
         $this->smjer = new stdClass();
@@ -67,7 +75,6 @@ class SmjerController extends AutorizacijaController
         $this->novoView();
     }
 
-     
     private function novoView()
     {
         $this->view->render($this->viewDir . 'novo',[
@@ -102,7 +109,6 @@ class SmjerController extends AutorizacijaController
     }
 
 
-       
     private function kontrolaTrajanje()
     {
         if(!is_numeric($this->smjer->trajanje)
@@ -114,11 +120,9 @@ class SmjerController extends AutorizacijaController
          return true;
     }
 
-    
 
     private function kontrolaCijena()
     {
-       
         $this->smjer->cijena=str_replace(',','.',$this->smjer->cijena);
         if(!is_numeric($this->smjer->cijena)
               || ((float)$this->smjer->cijena)<=0){
