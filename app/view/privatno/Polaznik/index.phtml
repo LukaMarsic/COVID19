@@ -1,0 +1,35 @@
+<table>
+    <thead>
+        <tr>
+            <th>Ime i prezime predavača</th>
+            <th>email</th>
+            <th>Broj ugovora</th>
+            <th>OIB</th>
+            <th style="text-align: right;">
+            <a href="<?=App::config('url')?>polaznik/novo">Dodaj novog</a>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach($entiteti as $red): ?>
+            <tr>
+                <td><?=$red->ime?> <?=$red->prezime?></td>
+                <td><?=$red->email?></td>
+                <td><?=$red->brojugovora?></td>
+                <td><?=$red->oib?></td>
+                <td>
+                    <a href="<?=App::config('url')?>polaznik/promjena?sifra=<?=$red->sifra?>">
+                        <i title="promjena" class="fas fa-2x fa-pencil-alt"></i>
+                    </a>
+                    <?php if($red->ukupnogrupa==0): ?>
+                        <a href="<?=App::config('url')?>polaznik/brisanje?sifra=<?=$red->sifra?>"
+                        onclick="return confirm('Sigurno obrisati <?=Funkcije::escapeSingleQuote($red->ime . ' ' . $red->prezime) ?>?');">
+                        <i title="brisanje" style="color: red" class="fas fa-trash-alt"></i></a>
+                    <?php endif;?>
+                </td>
+            </tr>
+
+        <?php endforeach; ?>
+    </tbody>
+</table>
+
