@@ -1,1 +1,40 @@
-Kreiranje novog smjera
+<form class="log-in-form" 
+    action="<?=App::config('url')?>smjer/novo"
+    method="POST">
+  <h4 class="text-center">Dodavanje novog smjera</h4>
+  <label>Naziv
+    <input type="text" name="naziv" value="<?=$smjer->naziv?>">
+  </label>
+
+  <label>Trajanje
+    <input type="text" name="trajanje" value="<?=$smjer->trajanje?>">
+  </label>
+
+  <label>Cijena
+    <input type="text" name="cijena" value="<?=$smjer->cijena?>">
+  </label>
+
+  <label>Verificiran
+        <select name="verificiran">
+        <option 
+        <?php 
+        if($smjer->verificiran==='1'){
+            echo ' selected="selected" ';
+        }
+        ?>
+         value="1">DA</option>
+
+
+        <option 
+        <?php 
+        if($smjer->verificiran==='0'){
+            echo ' selected="selected" ';
+        }
+        ?>
+         value="0">NE</option>
+        </select>
+  </label>
+ 
+ <p><input type="submit" class="button expanded" value="Prijava"></input></p>
+<?=$poruka?>
+</form>
