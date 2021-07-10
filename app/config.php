@@ -18,8 +18,8 @@ if($dev){
     ];
 }
 return [
-    'url'=>'http://predavac01.edunova.hr/',
-    'nazivApp'=>'Edunova APP',
+    'url'=>'http://polaznik20.edunova.hr/',
+    'nazivApp'=>'STANKO',
     'baza'=>$baza
 
     ];

@@ -4,7 +4,9 @@
 <?php foreach($smjerovi as $smjer): ?>
     <li>
         <?=$smjer->naziv?> 
-        <a href="#">Promjeni</a>
+        <a href="<?=App::config('url')?>smjer/promjena?sifra=<?=$smjer->sifra?>">
+            Promjeni
+        </a>
         <a href="#">Obriši</a>
     </li>
 <?php endforeach; ?>

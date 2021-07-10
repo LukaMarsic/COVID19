@@ -137,7 +137,7 @@ values (null,'Tomislav','Jakopec',null,'tjakopec@gmail.com');
 
 
 
-# zadatak: Unijeti predavača Shaquille O'Neal
+
 
 # 18
 insert into osoba (sifra,ime,prezime,oib,email)

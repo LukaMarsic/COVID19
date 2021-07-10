@@ -6,6 +6,9 @@ class SmjerController extends AutorizacijaController
                         . DIRECTORY_SEPARATOR
                         . 'smjer'
                         . DIRECTORY_SEPARATOR;
+    
+    private $smjer=null;
+    private $poruka='';
 
     public function index()
     {
@@ -13,70 +16,118 @@ class SmjerController extends AutorizacijaController
             'smjerovi'=>Smjer::ucitajSve()
         ]);
     }
+
     public function novo()
     {
         if($_SERVER['REQUEST_METHOD']==='GET'){
-            $smjer = new stdClass();
-            $smjer->naziv='';
-            $smjer->trajanje=100;
-            $smjer->cijena=1000;
-            $smjer->verificiran='0';
-
-             // $this->view->render($this->viewDir . 'novo',[
-           //     'smjer'=>$smjer,
-           //     'poruka'=>'Popunite sve podatke'
-           // ]);
-           $this->novoView($smjer,'Popunite sve podatke');
-
+           
+            $this->noviSmjer();
             return;
         }
-
-
-        $smjer = (object) $_POST;
-
-        if(strlen(trim($smjer->naziv))===0){
-            // $this->view->render($this->viewDir . 'novo',[
-           //     'smjer'=>$smjer,
-          //      'poruka'=>'Naziv obavezno'
-           // ]);
-           // linija ispod mijenja 4 linije iznad
-            $this->novoView($smjer,'Naziv obavezno');
-            return;
-        }
-
-        if(strlen(trim($smjer->naziv))>50){
-            $this->novoView($smjer,'Naziv ne može imati više od 50 znakova');
-            return;
-        }
-        
-        if(!is_numeric($smjer->trajanje)
-            || ((int)$smjer->trajanje)<=0){
-            $this->novoView($smjer,'Trajanje mora biti cijeli pozitivni broj');
-            return;
-      }
-
-      $smjer->cijena=str_replace(',','.',$smjer->cijena);
-      if(!is_numeric($smjer->cijena)
-            || ((float)$smjer->cijena)<=0){
-            $this->novoView($smjer,'Cijena mora biti pozitivni broj');
-            return;
-      }
-
-   // npr. svojstvu verificiran ne treba kontrola
-
-      // ovdje sam siguran da je sve OK prije odlaska u bazu
-      Smjer::dodajNovi($smjer);
-      $this->index();
-       
+        $this->smjer = (object) $_POST;
+        if(!$this->kontrolaNaziv()){return;}
+        if(!$this->kontrolaTrajanje()){return;}
+        if(!$this->kontrolaCijena()){return;}
+        Smjer::dodajNovi($this->smjer);
+        $this->index();
     }
 
-    private function novoView($smjer, $poruka)
+
+       
+    public function promjena()
+    {
+        if($_SERVER['REQUEST_METHOD']==='GET'){
+            if(!isset($_GET['sifra'])){
+               $ic = new IndexController();
+               $ic->logout();
+               return;
+            }
+            $this->smjer = Smjer::ucitaj($_GET['sifra']);
+            $this->poruka='Promjenite željene podatke';
+            $this->promjenaView();
+            return;
+        }
+        $this->smjer = (object) $_POST;
+        if(!$this->kontrolaNaziv()){return;}
+        if(!$this->kontrolaTrajanje()){return;}
+        // neću odraditi na promjeni kontrolu cijene
+        Smjer::promjeniPostojeci($this->smjer);
+        $this->index();
+    }
+
+       
+    private function noviSmjer()
+    {
+        $this->smjer = new stdClass();
+        $this->smjer->naziv='';
+        $this->smjer->trajanje=100;
+        $this->smjer->cijena=1000;
+        $this->smjer->verificiran='0';
+        $this->poruka='Unesite tražene podatke';
+        $this->novoView();
+    }
+
+     
+    private function novoView()
     {
         $this->view->render($this->viewDir . 'novo',[
-            'smjer'=>$smjer,
-            'poruka'=>$poruka
+            'smjer'=>$this->smjer,
+            'poruka'=>$this->poruka
         ]);
     }
 
-}
+    private function promjenaView()
+    {
+        $this->view->render($this->viewDir . 'promjena',[
+            'smjer'=>$this->smjer,
+            'poruka'=>$this->poruka
+        ]);
+    }
 
+
+    private function kontrolaNaziv()
+    {
+        if(strlen(trim($this->smjer->naziv))===0){
+            $this->poruka='Naziv obavezno';
+            $this->novoView();
+            return false;
+         }
+ 
+         if(strlen(trim($this->smjer->naziv))>50){
+            $this->poruka='Naziv ne može imati više od 50 znakova';
+            $this->novoView();
+            return false;
+         }
+         return true;
+    }
+
+
+       
+    private function kontrolaTrajanje()
+    {
+        if(!is_numeric($this->smjer->trajanje)
+            || ((int)$this->smjer->trajanje)<=0){
+                $this->poruka='Trajanje mora biti cijeli pozitivni broj';
+            $this->novoView();
+            return false;
+      }
+         return true;
+    }
+
+    
+
+    private function kontrolaCijena()
+    {
+       
+        $this->smjer->cijena=str_replace(',','.',$this->smjer->cijena);
+        if(!is_numeric($this->smjer->cijena)
+              || ((float)$this->smjer->cijena)<=0){
+                $this->poruka='Cijena mora biti pozitivni broj';
+              $this->novoView();
+              return false;
+        }
+         return true;
+    }
+    
+
+}

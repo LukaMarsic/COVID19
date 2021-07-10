@@ -3,6 +3,19 @@
 class Smjer
 {
 
+    public static function ucitaj($sifra)
+    {
+        $veza = DB::getInstanca();
+        $izraz=$veza->prepare('
+        
+            select * from smjer where sifra=:sifra
+        
+        ');
+        $izraz->execute(['sifra'=>$sifra]);
+        return $izraz->fetch();
+    }
+
+
     public static function ucitajSve()
     {
         $veza = DB::getInstanca();
