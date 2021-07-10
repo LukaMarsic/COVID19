@@ -10,9 +10,9 @@ class Polaznik20
         $izraz=$veza->prepare('
         
         select a.sifra, a.iban,b.ime,b.prezime,
-        b.oib,b.email, count(c.sifra) as grupa from predavac a 
+        b.oib,b.email, count(c.sifra) as ukupnogrupa from polaznik20 a 
         inner join osoba b on a.osoba =b.sifra 
-        left join grupa c on a.sifra =c.predavac 
+        left join grupa c on a.sifra =c.polaznik20
         group by a.sifra, a.iban,b.ime,b.prezime,
         b.oib,b.email;
         
