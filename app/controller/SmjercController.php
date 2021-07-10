@@ -13,6 +13,9 @@ class SmjerController extends AutorizacijaController
             'smjerovi'=>Smjer::ucitajSve()
         ]);
     }
-
+    public function novo()
+    {
+        $this->view->render($this->viewDir . 'novo');
+    }
 }
 
