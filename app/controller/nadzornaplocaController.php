@@ -5,6 +5,7 @@ class NadzornaplocaController extends AutorizacijaController
 
     public function index()
     {
+       
         $this->view->render('privatno' . DIRECTORY_SEPARATOR . 'nadzornaploca',[
             'css'=>'<link rel="stylesheet" href="' . App::config('url') . 'public/css/nadzornaploca.css">',
             'js'=>'<script src="https://code.highcharts.com/highcharts.js"></script>
@@ -16,6 +17,7 @@ class NadzornaplocaController extends AutorizacijaController
             . ';</script>
             <script src="' . App::config('url') . 'public/js/nadzornaploca.js"></script>'
         ]);
-    }
+
+}
 
 }

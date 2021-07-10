@@ -66,7 +66,17 @@ class PolaznikController extends AutorizacijaController
             'entiteti'=>$polaznici,
             'uvjet'=>$_GET['uvjet'],
             'stranica'=>$stranica,
-            'ukupnoStranica'=>$ukupnoStranica
+            
+            'ukupnoStranica'=>$ukupnoStranica,
+            'css'=>'
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" crossorigin="anonymous">
+            <link rel="stylesheet" href="' . App::config('url') . 'public/css/cropper.css">
+            ',
+            'js'=>'
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+            <script src="' . App::config('url') . 'public/js/cropper.js"></script>
+            <script src="' . App::config('url') . 'public/js/polaznik/index.js"></script>
+            '
         ]);
     }
 
@@ -197,5 +207,22 @@ class PolaznikController extends AutorizacijaController
             throw new Exception('OIB nije ispravan');
         }
     }
+
+
+    public function spremisliku(){
+
+        $slika = $_POST['slika'];
+        $slika=str_replace('data:image/png;base64,','',$slika);
+        $slika=str_replace(' ','+',$slika);
+        $data=base64_decode($slika);
+
+        file_put_contents(BP . 'public' . DIRECTORY_SEPARATOR
+        . 'img' . DIRECTORY_SEPARATOR . 
+        'polaznik' . DIRECTORY_SEPARATOR 
+        . $_POST['id'] . '.png', $data);
+
+        echo "OK";
+    }
+
 
 }
