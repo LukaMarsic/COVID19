@@ -107,6 +107,17 @@ class GrupaController extends AutorizacijaController
        
     }
 
+    public function dodajpolaznika()
+    {
+        Grupa::dodajPolaznika();
+        echo 'OK';
+    }
+
+    public function obrisipolaznika()
+    {
+        Grupa::obrisiPolaznika();
+        echo 'OK';
+    }
 
 
 
@@ -141,7 +152,11 @@ class GrupaController extends AutorizacijaController
             'entitet'=>$this->entitet,
             'poruka'=>$this->poruka,
             'smjerovi'=>$this->smjerovi,
-            'predavaci'=>$this->predavaci
+            'predavaci'=>$this->predavaci,
+            'css'=>'<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">',
+            'js'=>'<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+            <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+            <script src="' . App::config('url') . 'public/js/grupa/promjena.js"></script>'
         ]);
     }
 

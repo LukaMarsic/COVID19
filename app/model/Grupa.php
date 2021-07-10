@@ -94,5 +94,27 @@ class Grupa
         $izraz->execute(['sifra'=>$sifra]);
     }
 
+    public static function dodajPolaznika()
+    {
+        $veza = DB::getInstanca();
+        $izraz=$veza->prepare('
+        
+            insert into clan (grupa,polaznik) values 
+            (:grupa,:polaznik);
+        
+        ');
+        $izraz->execute($_POST);
+    }
+
+    public static function obrisiPolaznika()
+    {
+        $veza = DB::getInstanca();
+        $izraz=$veza->prepare('
+        
+            delete from clan where grupa=:grupa and polaznik=:polaznik;
+        
+        ');
+        $izraz->execute($_POST);
+    }
 
 }

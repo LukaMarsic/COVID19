@@ -10,10 +10,19 @@ class PolaznikController extends AutorizacijaController
     private $entitet=null;
     private $poruka='';
 
+
+    public function trazipolaznike()
+    {
+        header('Content-type: application/json');
+        echo json_encode(Polaznik::trazipolaznike());
+    }
+
+
     public function index()
     {
 
-       
+        
+
         if(isset($_GET['uvjet'])){
             $uvjet='%' . $_GET['uvjet'] . '%';
         }else{
@@ -39,7 +48,7 @@ class PolaznikController extends AutorizacijaController
         }
 
         $polaznici = Polaznik::ucitajSve($stranica,$uvjet);
-
+        
         foreach($polaznici as $red){
             if(file_exists(BP . 'public' . DIRECTORY_SEPARATOR .
             'img' . DIRECTORY_SEPARATOR . 'polaznik' . 

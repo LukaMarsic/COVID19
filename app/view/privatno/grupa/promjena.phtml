@@ -63,13 +63,15 @@ action="<?=App::config('url')?>grupa/promjena"
             <th>Akcija</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody id="polaznici">
         <?php foreach($entitet->polaznici as $red): ?>
             <tr>
                 <td><?=$red->ime . ' ' . $red->prezime;?></td>
                 <td>
-                <a href="#" id="p_<?=$red->sifra?>">
-                        <i title="brisanje" style="color: red" class="fas fa-trash-alt"></i>
+                <a class="brisanje" href="#" 
+                id="p_<?=$red->sifra?>">
+                        <i title="brisanje" style="color: red" 
+                        class="fas fa-trash-alt"></i>
                         </a>
                 </td>
             </tr>
@@ -100,3 +102,6 @@ action="<?=App::config('url')?>grupa/promjena"
 </div>
 <input type="hidden" name="sifra" value="<?=$entitet->sifra?>">
 </form>
++<script>
+let grupa=<?=$entitet->sifra?>;
+</script>
