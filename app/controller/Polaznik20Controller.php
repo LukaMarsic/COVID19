@@ -59,6 +59,17 @@ class Polaznik20Controller extends AutorizacijaController
             $this->promjenaView();
         }       
     }
+    public function brisanje()
+    {
+        if(!isset($_GET['sifra'])){
+            $ic = new IndexController();
+            $ic->logout();
+            return;
+        }
+        Polaznik20::obrisiPostojeci($_GET['sifra']);
+        header('location: ' . App::config('url') . 'polaznik20/index');
+       
+    }
 
 
     private function noviEntitet()

@@ -23,7 +23,7 @@
                     </a>
                     <?php if($red->ukupnogrupa==0): ?>
                         <a href="<?=App::config('url')?>polaznik20/brisanje?sifra=<?=$smjer->sifra?>"
-                        onclick="return confirm('Sigurno obrisati <?=$red->ime?> <?=$red->prezime?>?');">
+                        onclick="return confirm('Sigurno obrisati <?=Funkcije::escapeSingleQuote($red->ime . ' ' . $red->prezime) ?>?');">
                         <i title="brisanje" style="color: red" class="fas fa-trash-alt"></i></a>
                     <?php endif;?>
                 </td>

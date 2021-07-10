@@ -109,7 +109,7 @@ class Polaznik20
 
         $izraz=$veza->prepare('
         
-            update predavac 
+            update polaznik20
             set iban=:iban
             where sifra=:sifra
     
@@ -123,6 +123,36 @@ class Polaznik20
 
         $veza->commit();
 
+    }
+
+    public static function obrisiPostojeci($sifra)
+    {
+        $veza = DB::getInstanca();
+        $veza->beginTransaction();
+        $izraz=$veza->prepare('
+        
+          select osoba from polaznik20 where sifra=:sifra
+        
+        ');
+        $izraz->execute(['sifra'=>$sifra]);
+        $sifraOsoba=$izraz->fetchColumn();
+
+        $izraz=$veza->prepare('
+        
+            delete from polaznik20 where sifra=:sifra
+        
+        ');
+        $izraz->execute(['sifra'=>$sifra]);
+
+
+        $izraz=$veza->prepare('
+        
+            delete from osoba where sifra=:sifra
+        
+        ');
+        $izraz->execute(['sifra'=>$sifraOsoba]);
+
+        $veza->commit();
     }
 
 
