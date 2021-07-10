@@ -3,6 +3,26 @@
 class Polaznik20
 {
 
+    public static function ucitaj($sifra)
+    {
+
+        $veza = DB::getInstanca();
+        $izraz=$veza->prepare('
+        
+        select a.sifra, a.iban,b.ime,b.prezime,
+        b.oib,b.email from polaznik20 a 
+        inner join osoba b on a.osoba =b.sifra
+        where a.sifra=:sifra;
+        
+        ');
+        $izraz->execute(['sifra'=>$sifra]);
+        return $izraz->fetch();
+
+
+    }
+
+
+
     public static function ucitajSve()
     {
 
@@ -10,9 +30,9 @@ class Polaznik20
         $izraz=$veza->prepare('
         
         select a.sifra, a.iban,b.ime,b.prezime,
-        b.oib,b.email, count(c.sifra) as ukupnogrupa from polaznik20 a 
+        b.oib,b.email, count(c.sifra) as ukupnogrupa from predavac a 
         inner join osoba b on a.osoba =b.sifra 
-        left join grupa c on a.sifra =c.polaznik20
+        left join grupa c on a.sifra =c.predavac 
         group by a.sifra, a.iban,b.ime,b.prezime,
         b.oib,b.email;
         
@@ -22,6 +42,7 @@ class Polaznik20
 
 
     }
+
 
     public static function dodajNovi($entitet)
     {
@@ -43,7 +64,7 @@ class Polaznik20
         $zadnjaSifra=$veza->lastInsertId();
         $izraz=$veza->prepare('
         
-            insert into predavac 
+            insert into polaznik20 
             (osoba, iban) values
             (:osoba, :iban)
         
@@ -54,6 +75,54 @@ class Polaznik20
         ]);
 
         $veza->commit();
+    }
+
+
+    public static function promjeniPostojeci($entitet)
+    {
+        $veza = DB::getInstanca();
+        $veza->beginTransaction();
+        $izraz=$veza->prepare('
+        
+          select osoba from polaznik20 where sifra=:sifra
+        
+        ');
+        $izraz->execute(['sifra'=>$entitet->sifra]);
+        $sifraOsoba=$izraz->fetchColumn();
+
+
+        $izraz=$veza->prepare('
+        
+            update osoba 
+            set ime=:ime, prezime=:prezime, email=:email, oib=:oib
+            where sifra=:sifra
+            
+        ');
+        $izraz->execute([
+            'ime'=>$entitet->ime,
+            'prezime'=>$entitet->prezime,
+            'email'=>$entitet->email,
+            'oib'=>$entitet->oib,
+            'sifra'=>$sifraOsoba
+        ]);
+
+
+        $izraz=$veza->prepare('
+        
+            update predavac 
+            set iban=:iban
+            where sifra=:sifra
+    
+        ');
+        $izraz->execute([
+            'sifra'=>$entitet->sifra,
+            'iban'=>$entitet->iban
+        ]);
+
+
+
+        $veza->commit();
+
     }
 
 

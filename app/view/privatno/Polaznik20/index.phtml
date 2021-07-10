@@ -18,7 +18,7 @@
                 <td><?=$red->iban?></td>
                 <td><?=$red->oib?></td>
                 <td>
-                    <a href="<?=App::config('url')?>polaznik20/promjena?sifra=<?=$smjer->sifra?>">
+                <a href="<?=App::config('url')?>polaznik20/promjena?sifra=<?=$red->sifra?>">
                         <i title="promjena" class="fas fa-2x fa-pencil-alt"></i>
                     </a>
                     <?php if($red->ukupnogrupa==0): ?>
