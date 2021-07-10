@@ -23,6 +23,39 @@ class Polaznik20
 
     }
 
+    public static function dodajNovi($entitet)
+    {
+        $veza = DB::getInstanca();
+        $veza->beginTransaction();
+        $izraz=$veza->prepare('
+        
+            insert into osoba 
+            (ime, prezime, email, oib) values
+            (:ime, :prezime, :email, :oib)
+            
+        ');
+        $izraz->execute([
+            'ime'=>$entitet->ime,
+            'prezime'=>$entitet->prezime,
+            'email'=>$entitet->email,
+            'oib'=>$entitet->oib
+        ]);
+        $zadnjaSifra=$veza->lastInsertId();
+        $izraz=$veza->prepare('
+        
+            insert into predavac 
+            (osoba, iban) values
+            (:osoba, :iban)
+        
+        ');
+        $izraz->execute([
+            'osoba'=>$zadnjaSifra,
+            'iban'=>$entitet->iban
+        ]);
+
+        $veza->commit();
+    }
+
 
 
 }
