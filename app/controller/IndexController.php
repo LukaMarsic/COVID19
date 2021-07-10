@@ -97,8 +97,12 @@ class IndexController extends Controller
 
         
     }
+    public function ajax()
+    {
+        echo json_encode(Polaznik::ucitajSve(1,'%'));
+    }
 
-
+/*
     public function test()
     {
 
