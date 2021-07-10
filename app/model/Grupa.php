@@ -2,6 +2,21 @@
 
 class Grupa
 {
+    public static function brojPolaznikaPoGrupama()
+    {
+        $veza = DB::getInstanca();
+        $izraz=$veza->prepare('
+        
+        select a.naziv as name, count(b.polaznik) as y
+        from grupa a inner join clan b
+        on a.sifra =b.grupa 
+        group by a.naziv;
+        
+        ');
+        $izraz->execute();
+        return $izraz->fetchAll();
+
+    }
 
     public static function ucitaj($sifra)
     {
