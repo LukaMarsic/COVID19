@@ -9,7 +9,7 @@ class DB extends PDO
     private function __construct($baza)
     {
         $dsn='mysql:host=' . $baza['server'] . 
-        ';dbname=' . $baza['baza'] . ';charset=utf8';
+        ';dbname=' . $baza['baza'] . ';charset=utf8mb4';
 
         parent::__construct($dsn,$baza['korisnik'],$baza['lozinka']);
 

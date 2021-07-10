@@ -21,10 +21,8 @@ class SmjerController extends AutorizacijaController
             $smjer->trajanje=100;
             $smjer->cijena=1000;
             $smjer->verificiran='0';
-            $this->view->render($this->viewDir . 'novo',[
-                'smjer'=>$smjer,
-                'poruka'=>'Popunite sve podatke'
-            ]);
+
+            $this->novoView($smjer,'Popunite sve podatke');
             return;
         }
 

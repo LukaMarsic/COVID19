@@ -7,7 +7,7 @@
   </label>
 
   <label>Trajanje
-    <input type="text" name="trajanje" value="<?=$smjer->trajanje?>">
+  <input type="number" min="1" max="320" name="trajanje" value="<?=$smjer->trajanje?>">
   </label>
 
   <label>Cijena
@@ -35,6 +35,6 @@
         </select>
   </label>
  
- <p><input type="submit" class="button expanded" value="Prijava"></input></p>
+  <p><input type="submit" class="button expanded" value="Dodaj"></input></p>
 <?=$poruka?>
 </form>
