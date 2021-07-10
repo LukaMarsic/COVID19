@@ -145,6 +145,7 @@ values (null,'Bradoljuti',null,'shaki@gmail.com');
 
 insert into polaznik20 (osoba) values (17),(18);
 
+update grupa set polaznik20=1 where sifra=1;
 
 
 
