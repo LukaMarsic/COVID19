@@ -20,6 +20,7 @@ if($dev){
 return [
     'url'=>'http://polaznik20.edunova.hr/',
     'nazivApp'=>'STANKO',
-    'baza'=>$baza
+    'baza'=>$baza,
+    'rezultataPoStranici'=>4
 
     ];

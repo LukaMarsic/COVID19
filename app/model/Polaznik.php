@@ -23,7 +23,7 @@ class Polaznik
 
 
 
-    public static function ucitajSve()
+    public static function ucitajSve($stranica,$uvjet)
     {
 
         $veza = DB::getInstanca();

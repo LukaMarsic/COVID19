@@ -13,7 +13,32 @@ class PolaznikController extends AutorizacijaController
     public function index()
     {
 
-        $polaznici = Polaznik::ucitajSve();
+       
+        if(isset($_GET['uvjet'])){
+            $uvjet='%' . $_GET['uvjet'] . '%';
+        }else{
+            $uvjet='%';
+            $_GET['uvjet']='';
+        }
+
+        if(isset($_GET['stranica'])){
+            $stranica = $_GET['stranica'];
+            if($stranica==0){
+                $stranica=1;
+            }
+        }else{
+            $stranica=1;
+        }
+
+        $brojPolaznika=Polaznik::ukupnoPolaznika($uvjet);
+        $ukupnoStranica=ceil($brojPolaznika/App::config('rezultataPoStranici'));
+
+
+        if($stranica>$ukupnoStranica){
+            $stranica=$ukupnoStranica;
+        }
+
+        $polaznici = Polaznik::ucitajSve($stranica,$uvjet);
 
         foreach($polaznici as $red){
             if(file_exists(BP . 'public' . DIRECTORY_SEPARATOR .
@@ -30,7 +55,9 @@ class PolaznikController extends AutorizacijaController
 
         $this->view->render($this->viewDir . 'index',[
             'entiteti'=>$polaznici,
-            'uvjet'=>''
+            'uvjet'=>$_GET['uvjet'],
+            'stranica'=>$stranica,
+            'ukupnoStranica'=>$ukupnoStranica
         ]);
     }
 
