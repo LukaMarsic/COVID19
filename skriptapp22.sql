@@ -16,7 +16,7 @@ create table operater(
     uloga varchar(10) not null
 );
 # lozinka je a
-insert into operater values(null,'edunova@edunova.hr',
+insert into operater values(null,'bradoljuti@outlook.com',
 '$2y$10$Revp1k7DnQ0b1fClBuoZ8.O0w2RyIsXyTU51yqHz9mk7SLB/it9GO',
 'Administrator','Edunova','admin');
 
@@ -141,9 +141,9 @@ values (null,'Tomislav','Jakopec',null,'tjakopec@gmail.com');
 
 # 18
 insert into osoba (sifra,ime,prezime,oib,email)
-values (null,'Shaquille','O''Neal',null,'shaki@gmail.com');
+values (null,'Bradoljuti',null,'shaki@gmail.com');
 
-insert into predavac (osoba) values (17),(18);
+insert into polaznik20 (osoba) values (17),(18);
 
 
 

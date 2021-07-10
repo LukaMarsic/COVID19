@@ -40,7 +40,7 @@ class IndexController extends Controller
     {
         if(!isset($_POST['email']) || !isset($_POST['lozinka'])){
             $this->login();
-            return; //short curcuiting
+            return; 
         }
 
         if(strlen(trim($_POST['email']))===0){
@@ -52,14 +52,38 @@ class IndexController extends Controller
             $this->loginView($_POST['email'],'Obavezno lozinka');
             return;
         }
+
+        {
+            $this->loginView($_POST['email'],'Email ne postoji u bazi');
+            return;
+            
+        }
+        $veza = DB::getInstanca();
+        $izraz=$veza->prepare('
         
-        if(!($_POST['email']==='edunova@edunova.hr' && 
-            $_POST['lozinka']==='e') ){
-                $this->loginView($_POST['email'],'Neispravna kombinacija emaila i lozinke');
-                return;
+        select * from operater where email=:email');
+
+
+
+        $izraz->execute(['email'=>$_POST['email']]);
+        $rezultat = $izraz->fetch();
+
+        
+        
+        if($rezultat==null){
+            $this->loginView($_POST['email'],'Email ne postoji u bazi');
+            return;
+        }
+        
+
+        if(!password_verify($_POST['lozinka'],$rezultat->lozinka)){
+            $this->loginView($_POST['email'],'Kombinacija email i lozinka ne odgovaraju');
+            return;
         }
 
-        $_SESSION['autoriziran']='Edunova Korisnik';
+
+        unset($rezultat->lozinka);
+        $_SESSION['autoriziran']=$rezultat;
         $np = new NadzornaplocaController();
         $np->index();
     }
@@ -70,5 +94,31 @@ class IndexController extends Controller
             'email'=>$email,
             'poruka'=>$poruka
         ]);
+
+        
     }
+
+
+    public function test()
+    {
+        $veza = DB::getInstanca();
+        $izraz=$veza->prepare('select * from smjer');
+        $izraz->execute();
+        $rezultati = $izraz->fetchAll();
+        print_r($rezultati);
+    } 
+    
+     /*
+    public function test()
+    {
+        $veza = DB::getInstanca();
+@ -78,5 +91,5 @@ class IndexController extends Controller
+        $rezultati = $izraz->fetchAll();
+        print_r($rezultati);
+    }
+    
+    */
+
+    
 }
+
