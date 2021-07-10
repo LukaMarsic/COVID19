@@ -54,17 +54,33 @@
           </ul>
         </li>
       <?php endif;?>
-      <li <?php 
+      <li class="hide-for-small-only <?php 
       if($_SERVER['REQUEST_URI']=='/index/era'){
-        echo 'class="active"';
-      }?>><a href="<?=App::config('url')?>index/era">ERA</a></li>
+        echo 'active';
+      }?>"><a href="<?=App::config('url')?>index/era">ERA</a></li>
       <li  <?php 
       if($_SERVER['REQUEST_URI']=='/index/kontakt'){
         echo 'class="active"';
       }?>><a href="<?=App::config('url')?>index/kontakt">Kontakt</a></li>
-    </ul>
+    
+    <li class="show-for-small-only <?php 
+      if($_SERVER['REQUEST_URI']=='/index/login'){
+        echo ' active';
+      }?>" >
+      <?php if(!isset($_SESSION['autoriziran'])): ?>
+        <a href="<?=App::config('url')?>index/login">Autoriziraj</a>
+      <?php else: ?>
+        
+        <a href="<?=App::config('url')?>index/logout">
+          <?=$_SESSION['autoriziran']->ime?> <?=$_SESSION['autoriziran']->prezime?> Odjava
+        </a>
+      <?php endif;?>
+      </li>
+  
+  </ul>
+  
   </div>
-  <div class="top-bar-right">
+  <div class="top-bar-right show-for-medium">
     <ul class="menu">
     <li <?php 
       if($_SERVER['REQUEST_URI']=='/index/login'){
