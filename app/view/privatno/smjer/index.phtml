@@ -3,9 +3,13 @@
 <ul style="list-style-type: none">
 <?php foreach($smjerovi as $smjer): ?>
     <li>
-    <span style="font-size: 1.5em; color:<?php 
-        echo $smjer->verificiran ? 'green' : 'red';
-        ?>"><?=$smjer->naziv?> </span>
+    <i title="<?php echo $smjer->verificiran ? 'Verificiran' : 'NIJE verificiran';?>" 
+        style="font-size: 1.5em; color:
+        <?php echo $smjer->verificiran ? 'green' : 'red';?>" 
+        class="fas fa-certificate"></i>
+        <span style="font-size: 1.5em;">
+        <?=$smjer->naziv?> 
+        </span>
         <a href="<?=App::config('url')?>smjer/promjena?sifra=<?=$smjer->sifra?>">
         <i title="promjena" class="fas fa-2x fa-pencil-alt"></i>
         </a>
