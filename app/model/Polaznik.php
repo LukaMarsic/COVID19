@@ -34,7 +34,7 @@ class Polaznik
         inner join osoba b on a.osoba =b.sifra 
         left join clan c on a.sifra =c.polaznik 
         group by a.sifra, a.brojugovora,b.ime,b.prezime,
-        b.oib,b.email;
+        b.oib,b.email limit 12;
         
         ');
         $izraz->execute();

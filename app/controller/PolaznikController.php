@@ -12,8 +12,25 @@ class PolaznikController extends AutorizacijaController
 
     public function index()
     {
+
+        $polaznici = Polaznik::ucitajSve();
+
+        foreach($polaznici as $red){
+            if(file_exists(BP . 'public' . DIRECTORY_SEPARATOR .
+            'img' . DIRECTORY_SEPARATOR . 'polaznik' . 
+            DIRECTORY_SEPARATOR . $red->sifra . '.png')){
+                $red->slika = App::config('url') . 
+                'public/img/polaznik/' . $red->sifra . '.png';
+            }else{
+                $red->slika = App::config('url') . 
+                'public/img/polaznik/nepoznato.png';
+            }
+        }
+
+
         $this->view->render($this->viewDir . 'index',[
-            'entiteti'=>Polaznik::ucitajSve()
+            'entiteti'=>$polaznici,
+            'uvjet'=>''
         ]);
     }
 

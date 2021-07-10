@@ -38,7 +38,7 @@ class App
 
     public static function config($kljuc)
     {
-        $config=include BP . 'config.php';
+        $config=include BP_APP . 'config.php';
         return $config[$kljuc];
     }
 

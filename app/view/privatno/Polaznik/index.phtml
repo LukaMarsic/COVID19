@@ -1,35 +1,71 @@
-<table>
-    <thead>
-        <tr>
-            <th>Ime i prezime predavača</th>
-            <th>email</th>
-            <th>Broj ugovora</th>
-            <th>OIB</th>
-            <th style="text-align: right;">
-            <a href="<?=App::config('url')?>polaznik/novo">Dodaj novog</a>
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php foreach($entiteti as $red): ?>
-            <tr>
-                <td><?=$red->ime?> <?=$red->prezime?></td>
-                <td><?=$red->email?></td>
-                <td><?=$red->brojugovora?></td>
-                <td><?=$red->oib?></td>
-                <td>
-                    <a href="<?=App::config('url')?>polaznik/promjena?sifra=<?=$red->sifra?>">
+
+
+<div class="grid-x grid-margin-x">
+    <div class="large-11 medium-11 small-10 cell">
+        <form action="<?=App::config('url')?>polaznik/index" method="get">
+            <input type="text" name="uvjet" value="<?=$uvjet?>"
+            placeholder="Unesite dio imena ili prezimena ili OIB-a">
+        </form>
+    </div>
+    <div class="large-1 medium-1 small-2 cell" style="padding-top:5px;">
+        
+        <a href="<?=App::config('url')?>polaznik/novo">
+        <i class="fas fa-2x fa-plus-circle"></i>
+        </a>
+    </div>
+</div>
+           
+<div class="grid-x grid-margin-x">
+    <?php foreach($entiteti as $red): ?>
+        <div class="large-3 medium-6 cell">
+        <div class="callout" style="min-height: 450px; text-align: center;">
+
+        <img src="<?=$red->slika?>" 
+                alt="<?=$red->ime?> <?=$red->prezime?>"
+                style="max-height: 200px;"><br />
+
+                <?=$red->ime?> <?=$red->prezime?><br />
+                <?=$red->email?>
+
+                <?php if($red->oib!=null): ?>
+                <br />
+                OIB: <?=$red->oib?>
+                <?php endif; ?>
+                
+                <?php if($red->brojugovora!=null): ?>
+                <br />
+                Broj ugovora: <?=$red->brojugovora?>
+                <?php endif; ?>
+
+                <hr />
+                <a href="<?=App::config('url')?>polaznik/promjena?sifra=<?=$red->sifra?>">
                         <i title="promjena" class="fas fa-2x fa-pencil-alt"></i>
-                    </a>
+                    
+                    </a> 
                     <?php if($red->ukupnogrupa==0): ?>
                         <a href="<?=App::config('url')?>polaznik/brisanje?sifra=<?=$red->sifra?>"
                         onclick="return confirm('Sigurno obrisati <?=Funkcije::escapeSingleQuote($red->ime . ' ' . $red->prezime) ?>?');">
                         <i title="brisanje" style="color: red" class="fas fa-trash-alt"></i></a>
                     <?php endif;?>
-                </td>
-            </tr>
+                
 
-        <?php endforeach; ?>
-    </tbody>
-</table>
+            </div>
+        </div>
 
+    <?php endforeach; ?>
+
+
+    <div class="cell">
+    <div class="callout">
+        <nav aria-label="Pagination">
+            <ul class="pagination text-center">
+                <li class="pagination-previous"> <a href="#">Prethodno</a> </li>
+                <li class="current"><span class="show-for-sr">
+                Vi ste na</span> 1 / 20</li>
+                <li class="pagination-next"><a href="#" aria-label="Sljedeća stranica">Sljedeće </a></li>
+            </ul>
+        </nav>
+    </div>
+    </div>
+    
+</div>
