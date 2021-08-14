@@ -3,9 +3,9 @@
 <ul style="list-style-type: none">
 <?php foreach($Narudzbe as $narudzbe): ?>
     <li>
-    <i title="<?php echo $narudzbe->placanje ? 'Plaćeno' : 'NIJE Plaćeno';?>" 
+    <i title="<?php echo $narudzbe->Potvrda ? 'Odobreno' : 'Nije odobreno';?>" 
         style="font-size: 1.5em; color:
-        <?php echo $narudzbe->placanje ? 'green' : 'red';?>" 
+        <?php echo $narudzbe->potvrda ? 'green' : 'red';?>" 
         class="fas fa-certificate"></i>
         <span style="font-size: 1.5em;">
         <?=$narudzbe->naziv?> 

@@ -103,7 +103,7 @@ class OrdinacijaController extends AutorizacijaController
             return;
         }
         Ordinacija::obrisiPostojeci($_GET['sifra']);
-        header('location: ' . App::config('url') . 'ordinacija/index');
+        header('location: ' . App::config('url') . 'Ordinacija/index');
        
     }
 

@@ -26,10 +26,10 @@
   </div>
   <div class="cell large-4">
   <label>Plaćanje
-        <select name="placanje">
+        <select name="potvrda">
         <option 
         <?php 
-        if($Narudzbe->placanje==='1'){
+        if($Narudzbe->potvrda==='1'){
             echo ' selected="selected" ';
         }
         ?>
@@ -38,7 +38,7 @@
 
         <option 
         <?php 
-        if($Narudzbe->placanje==='0'){
+        if($Narudzbe->potvrda==='0'){
             echo ' selected="selected" ';
         }
         ?>
@@ -60,7 +60,7 @@
   
   <div class="cell small-6 medium-6 large-6">
     <a class="alert button expanded" 
-        href="<?=App::config('url')?>placanje/index">Nazad</a>
+        href="<?=App::config('url')?>potvrda/index">Nazad</a>
   </div>
   
   <div class="cell small-6 medium-6 large-6">

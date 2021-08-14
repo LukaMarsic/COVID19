@@ -24,7 +24,7 @@ class narudzbe
         from narudzbe a 
         left join ordinacija b on a.sifra=b.narudzbe
         group by a.sifra,a.naziv,a.trajanje,
-        a.cijena,a.placanje ;
+        a.cijena,a.potvrda ;
         
         ');
         $izraz->execute();
@@ -36,8 +36,8 @@ class narudzbe
         $veza = DB::getInstanca();
         $izraz=$veza->prepare('
         
-            insert into narudzbe (naziv,trajanje,cijena,placanje)
-            values (:naziv,:trajanje,:cijena,:placanje)
+            insert into narudzbe (naziv,trajanje,cijena,potvrda)
+            values (:naziv,:trajanje,:cijena,:potvrda)
         
         ');
         $izraz->execute((array)$narudzbe);
@@ -50,7 +50,7 @@ class narudzbe
         
            update narudzbe set 
            naziv=:naziv,trajanje=:trajanje,
-           cijena=:cijena,placanje=:placanje
+           cijena=:cijena,potvrda=:potvrda
            where sifra=:sifra
         
         ');

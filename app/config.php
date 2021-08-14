@@ -1,6 +1,6 @@
 <?php
 
-+$dev=$_SERVER['REMOTE_ADDR']==='127.0.0.1' ? true : false;
+$dev=$_SERVER['REMOTE_ADDR']==='127.0.0.1' ? true : false;
 if($dev){
     $baza=[
         'server'=>'localhost',
@@ -12,9 +12,9 @@ if($dev){
 }else{
     $baza=[
         'server'=>'localhost',
-        'baza'=>'erinije_covid19 ',
-        'korisnik'=>'erinije_covid19',
-        'lozinka'=>'Edunova2020'
+        'baza'=>'erinije_COVID19',
+        'korisnik'=>'erinije_erinije',
+        'lozinka'=>'edunova123.'
     ];
 }
 return [

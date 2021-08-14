@@ -71,7 +71,7 @@ class NarudzbeController extends AutorizacijaController
             $this->Narudzbe->naziv='';
             $this->Narudzbe->trajanje=10;
             $this->Narudzbe->cijena=1000;
-            $this->Narudzbe->placanje='0';
+            $this->Narudzbe->potvrda='0';
             $this->poruka='Unesite tražene podatke';
             $this->novoView();
         }

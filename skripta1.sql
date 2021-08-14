@@ -3,7 +3,7 @@ drop database if exists covid19;
 create database covid19 character set utf8mb4;
 use covid19;
 
-alter database erinije_covid19 default character set utf8mb4;
+alter database erinije_COVID19 default character set utf8mb4;
 
 
 create table operater(
@@ -23,12 +23,12 @@ insert into operater values(null,'admin@outlook.com',
 '$2y$10$sgpLyFe/CDE1s8fclSngU.TCScIDRBh1uUZOhRXpZByhChZ8I0yGe',
 'Admin','Edunova','oper');
 
-create table Narudzbe(
+create table narudzbe(
     sifra int not null primary key auto_increment,
     naziv varchar(60) not null,
     trajanje int not null,
     cijena decimal(18,2),
-    placanje boolean
+    potvrda boolean
 );
 
 create table ordinacija(
@@ -73,10 +73,10 @@ alter table osoblje add foreign key (ordinacija) references ordinacija(sifra);
 alter table osoblje add foreign key (radnik) references radnik(sifra);
 
 #1
-insert into narudzbe (sifra,naziv,trajanje,cijena,placanje)
+insert into narudzbe (sifra,naziv,trajanje,cijena,potvrda)
 values (null,'narudzbe',10,null,true);
 
-insert into narudzbe (sifra,naziv,trajanje,cijena,placanje)
+insert into narudzbe (sifra,naziv,trajanje,cijena,potvrda)
 values (null,'izolacija',30,null,true);
 
 #2
