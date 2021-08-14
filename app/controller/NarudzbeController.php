@@ -27,7 +27,7 @@ class NarudzbeController extends AutorizacijaController
         $this->Narudzbe = (object) $_POST;
         if(!$this->kontrolaNaziv()){return;}
         if(!$this->kontrolaTrajanje()){return;}
-        if(!$this->kontrolaCijena()){return;}
+        if(!$this->kontrolaPotvrde()){return;}
         Narudzbe::dodajNovi($this->Narudzbe);
         $this->index();
     }
@@ -70,7 +70,7 @@ class NarudzbeController extends AutorizacijaController
             $this->Narudzbe = new stdClass();
             $this->Narudzbe->naziv='';
             $this->Narudzbe->trajanje=10;
-            $this->Narudzbe->cijena=1000;
+            $this->Narudzbe->Potvrde=1000;
             $this->Narudzbe->potvrda='0';
             $this->poruka='Unesite tražene podatke';
             $this->novoView();
@@ -120,12 +120,12 @@ class NarudzbeController extends AutorizacijaController
              return true;
         }
         
-        private function kontrolaCijena()
+        private function kontrolaPotvrde()
         {
-            $this->Narudzbe->cijena=str_replace(',','.',$this->Narudzbe->cijena);
-        if(!is_numeric($this->Narudzbe->cijena)
-              || ((float)$this->Narudzbe->cijena)<=0){
-                $this->poruka='Cijena mora biti pozitivni broj';
+            $this->Narudzbe->Potvrde=str_replace(',','.',$this->Narudzbe->Potvrde);
+        if(!is_numeric($this->Narudzbe->Potvrde)
+              || ((float)$this->Narudzbe->Potvrde)<=0){
+                $this->poruka='Potvrde mora biti pozitivni broj';
               $this->novoView();
               return false;
         }
