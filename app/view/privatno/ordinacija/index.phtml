@@ -1,0 +1,39 @@
+<div class="table-scroll">
+<table>
+    <thead>
+        <tr>
+        <th>
+            <a href="<?=App::config('url')?>ordinacija/novo">Dodaj novu</a>
+            </th>
+            <th>Naziv</th>
+            <th>Pregled</th>
+            <th>Doktor</th>
+            <th>Datum početka</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach($entiteti as $red): ?>
+            <tr>
+            <td>
+                    <a href="<?=App::config('url')?>ordinacija/promjena?sifra=<?=$red->sifra?>">
+                        <i title="promjena" class="fas fa-2x fa-pencil-alt"></i>
+                    </a>
+                    
+                </td>
+                <td><?=$red->naziv?></td>
+                <td><?=$red->narudzbe?></td>
+                <td><?=$red->doktor?></td>
+                <td><?=$red->datumpocetka?></td>
+                <td>
+                <td><?php if($red->radnika==0): ?>
+                        <a href="<?=App::config('url')?>ordinacija/brisanje?sifra=<?=$red->sifra?>"
+                        onclick="return confirm('Sigurno obrisati <?=Funkcije::escapeSingleQuote($red->naziv) ?>?');">
+                        <i title="brisanje" style="color: red" class="fas fa-trash-alt"></i></a>
+                <?php endif;?></td>
+            </tr>
+
+        <?php endforeach; ?>
+    </tbody>
+</table>
+</div>

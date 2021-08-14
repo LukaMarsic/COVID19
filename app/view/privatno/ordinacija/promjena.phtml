@@ -1,0 +1,114 @@
+<form class="log-in-form" 
+action="<?=App::config('url')?>ordinacija/promjena"
+    method="POST">
+    <h4 class="text-center">Promjena ordinacije</h4>
+
+
+
+  <div class="grid-x grid-padding-x">
+    <div class="cell large-6">
+    <label>Naziv
+          <input type="text" name="naziv" value="<?=$entitet->naziv?>">
+        </label>
+      </div>
+    <div class="cell large-6">
+    <label>narudzbe
+        <select name="narudzbe">
+          <?php foreach($narudzbe as $narudzbe): ?>
+            <option <?php 
+              if($entitet->narudzbe==$narudzbe->sifra){
+                echo ' selected="selected" ';
+              }
+              ?> value="<?=$narudzbe->sifra ?>"><?=$narudzbe->naziv ?></option>
+          <?php endforeach; ?>
+        </select>
+      </label>
+    </div>
+  </div>
+
+  
+
+
+  <div class="grid-x grid-padding-x">
+    <div class="cell large-6">
+    <label>Datum početka
+      <input type="datetime-local"
+       name="datumpocetka" value="<?=$entitet->datumpocetka; ?>"> 
+      </label>
+    </div>
+    <div class="cell large-6">
+    <label>doktor
+      <select name="doktor">
+          <?php foreach($doktori as $doktor): ?>
+            <option <?php 
+              if($entitet->doktor==$doktor->sifra){
+                echo ' selected="selected" ';
+              }
+              ?> value="<?=$doktor->sifra ?>"><?=$doktor->ime . ' ' . $doktor->prezime; ?></option>
+          <?php endforeach; ?>
+        </select>
+      </label>
+    </div>
+  </div>
+
+  <div class="grid-x grid-padding-x">
+    <div class="cell">
+      <hr />
+      <input type="text" id="uvjet"
+            placeholder="Unesite dio imena ili prezimena ili OIB-a">
+      <table>
+        <thead>
+          <tr>
+            <th>Radnik</th>
+            <th>Stimulacija</th>
+          </tr>
+        </thead>
+        <tbody id="Radnici">
+        <?php foreach ($entitet->Radnik as $red):
+          
+    
+
+          ?>
+            <tr>
+                <td><?=$red->ime . ' ' . $red->prezime;?></td>
+                <td>
+                <a class="brisanje" href="#" 
+                id="p_<?=$red->sifra?>">
+                        <i title="brisanje" style="color: red" 
+                        class="fas fa-trash-alt"></i>
+                        </a>
+                </td>
+            </tr>
+
+        <?php endforeach; ?>
+        </tbody>
+      </table>
+      <hr />
+    </div>
+  </div>
+  
+
+<div class="grid-x grid-padding-x">
+    <div class="cell">
+     <div class="callout">
+      <?=$poruka?>
+     </div>
+    </div>
+  </div>
+  
+
+<div class="grid-x grid-padding-x">
+  <div class="cell small-6 medium-6 large-6">
+    <a class="alert button expanded" 
+    href="<?=App::config('url')?>ordinacija/index">Nazad</a>
+  </div>
+  <div class="cell small-6 medium-6 large-6">
+    <input type="submit" class="button expanded" value="Promjeni"></input>
+  </div>
+</div>
+<input type="hidden" name="sifra" value="<?=$entitet->sifra?>">
+
+</form>
+<script>
+let ordinacija=<?=$entitet->sifra?>;
+</script>

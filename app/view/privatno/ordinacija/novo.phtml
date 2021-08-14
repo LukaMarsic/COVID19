@@ -1,0 +1,75 @@
+<form class="log-in-form" 
+action="<?=App::config('url')?>ordinacija/novo"
+    method="POST">
+    <h4 class="text-center">Dodavanje nove ordinacije</h4>
+
+
+
+  <div class="grid-x grid-padding-x">
+    <div class="cell large-6">
+    <label>Naziv
+          <input type="text" name="naziv" value="<?=$entitet->naziv?>">
+        </label>
+      </div>
+    <div class="cell large-6">
+    <label>Narudzbe
+        <select name="Narudzbe">
+          <?php foreach($Narudzbe as $narudzbe): ?>
+            <option <?php 
+              if($entitet->Narudzbe==$narudzbe->sifra){
+                echo ' selected="selected" ';
+              }
+              ?> value="<?=$Narudzbe->sifra ?>"><?=$Narudzbe->naziv ?></option>
+          <?php endforeach; ?>
+        </select>
+      </label>
+    </div>
+  </div>
+
+  
+
+
+  <div class="grid-x grid-padding-x">
+    <div class="cell large-6">
+    <label>Datum početka
+      <input type="datetime-local"
+       name="datumpocetka" value="<?=$entitet->datumpocetka; ?>"> 
+      </label>
+    </div>
+    <div class="cell large-6">
+    
+      <label>Doktor
+      <select name="Doktor">
+          <?php foreach($Doktori as $Doktor): ?>
+            <option <?php 
+              if($entitet->Doktor==$Doktor->sifra){
+                echo ' selected="selected" ';
+              }
+              ?> value="<?=$Doktor->sifra ?>"><?=$Doktor->ime . ' ' . $Doktor->prezime; ?></option>
+          <?php endforeach; ?>
+        </select>
+      </label>
+    </div>
+  </div>
+  
+ 
+<div class="grid-x grid-padding-x">
+    <div class="cell">
+     <div class="callout">
+      <?=$poruka?>
+     </div>
+    </div>
+  </div>
+  
+
+<div class="grid-x grid-padding-x">
+  <div class="cell small-6 medium-6 large-6">
+    <a class="alert button expanded" 
+    href="<?=App::config('url')?>ordinacija/index">Nazad</a>
+  </div>
+  <div class="cell small-6 medium-6 large-6">
+    <input type="submit" class="button expanded" value="Dodaj"></input>
+  </div>
+</div>
+
+</form>

@@ -1,0 +1,57 @@
+<form class="log-in-form" 
+    action="<?=App::config('url')?>Narudzbe/promjena"
+    method="POST">
+  <h4 class="text-center">Promjena postojeće Narudzbe</h4>
+  <label>Naziv
+    <input type="text" name="naziv" value="<?=$Narudzbe->naziv?>">
+  </label>
+
+
+  <div class="grid-x grid-padding-x">
+  <div class="cell large-4">
+  <label>Trajanje
+    <input type="number" min="1" max="320" name="trajanje" value="<?=$Narudzbe->trajanje?>">
+  </label>
+  </div>
+  <div class="cell large-4">
+  <label>Cijena
+    <input type="text" name="cijena" value="<?=$Narudzbe->cijena?>">
+  </label>
+  </div>
+  <div class="cell large-4">
+  <label>Plaćanje
+        <select name="placanje">
+        <option 
+        <?php 
+        if($Narudzbe->placanje==='1'){
+            echo ' selected="selected" ';
+        }
+        ?>
+         value="1">DA</option>
+
+
+        <option 
+        <?php 
+        if($Narudzbe->placanje==='0'){
+            echo ' selected="selected" ';
+        }
+        ?>
+         value="0">NE</option>
+        </select>
+  </label>
+  </div>
+</div>
+ 
+  <?=$poruka?>
+
+<div class="grid-x grid-padding-x">
+  <div class="cell small-6 medium-6 large-6">
+    <a class="alert button expanded" 
+        href="<?=App::config('url')?>Narudzbe/index">Nazad</a>
+  </div>
+  <div class="cell small-6 medium-6 large-6">
+    <input type="submit" class="button expanded" value="Promjena"></input>
+  </div>
+</div>
+<input type="hidden" name="sifra" value="<?=$Narudzbe->sifra?>">
+</form>

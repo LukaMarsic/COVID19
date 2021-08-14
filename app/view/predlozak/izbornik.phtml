@@ -1,0 +1,101 @@
+<div class="title-bar" data-responsive-toggle="responsive-menu" data-hide-for="medium">
+  <button class="menu-icon" type="button" data-toggle="responsive-menu"></button>
+  <div class="title-bar-title">Izbornik</div>
+</div>
+
+<div class="top-bar" id="responsive-menu">
+  <div class="top-bar-left">
+    <ul class="dropdown menu" data-dropdown-menu>
+      
+      <li <?php 
+      if(in_array($_SERVER['REQUEST_URI'],['/','/index/logout'])){
+        echo 'class="active"';
+      }?>>
+        <a href="<?=App::config('url')?>">    
+            <?=App::config('nazivApp')?>
+        </a>
+      </li>
+      <?php if(isset($_SESSION['autoriziran'])): ?>
+       
+        <li  <?php 
+      if(in_array($_SERVER['REQUEST_URI'],['/index/autorizacija','/nadzornaploca/index'])){
+        echo 'class="active"';
+      }?>><a href="<?=App::config('url')?>nadzornaploca/index">Nadzorna ploča</a></li>
+        <li <?php 
+      if(in_array($_SERVER['REQUEST_URI'],[
+        '/narudzbe/index',
+        '/radnik/index',
+        '/doktor/index',
+        '/ordinacija/index'
+        ])){
+        echo 'class="active"';
+      }?>>
+          <a href="#">Glavni Izbornik</a>
+          <ul class="vertical menu">
+           
+            <li <?php 
+              if($_SERVER['REQUEST_URI']=='/Narudzbe/index'){
+                echo 'class="active"';
+              }?>>
+            <a href="<?=App::config('url')?>Narudzbe/index">Narudzbe</a></li>
+            <li <?php 
+              if($_SERVER['REQUEST_URI']=='/radnik/index'){
+                echo 'class="active"';
+              }?>><a href="<?=App::config('url')?>radnik/index">Radnici</a></li>
+            <li <?php 
+              if($_SERVER['REQUEST_URI']=='/Doktor/index'){
+                echo 'class="active"';
+              }?>><a href="<?=App::config('url')?>Doktor/index">Doktor</a></li>
+            <li <?php 
+              if($_SERVER['REQUEST_URI']=='/ordinacija/index'){
+                echo 'class="active"';
+              }?>><a href="<?=App::config('url')?>ordinacija/index">Ordinacije</a></li>
+            <?php if($_SESSION['autoriziran']->uloga=='admin'): ?>
+              <li><a href="#">Operateri</a></li>
+            <?php endif;?>
+          </ul>
+        </li>
+      <?php endif;?>
+     
+      <li class="hide-for-small-only <?php 
+      if($_SERVER['REQUEST_URI']=='/index/era'){
+        echo 'active';
+      }?>"><a href="<?=App::config('url')?>index/era">ERA</a></li>
+      <li  <?php 
+      if($_SERVER['REQUEST_URI']=='/index/kontakt'){
+        echo 'class="active"';
+      }?>><a href="<?=App::config('url')?>index/kontakt">Kontakt</a></li>
+       <li class="show-for-small-only <?php 
+      if($_SERVER['REQUEST_URI']=='/index/login'){
+        echo ' active';
+      }?>" >
+      <?php if(!isset($_SESSION['autoriziran'])): ?>
+        <a href="<?=App::config('url')?>index/login">Autoriziraj</a>
+      <?php else: ?>
+        
+        <a href="<?=App::config('url')?>index/logout">
+          <?=$_SESSION['autoriziran']->ime?> <?=$_SESSION['autoriziran']->prezime?> Odjava
+        </a>
+      <?php endif;?>
+      </li>
+    </ul>
+  </div>
+  <div class="top-bar-right show-for-medium">
+    <ul class="menu">
+     
+      <li <?php 
+      if($_SERVER['REQUEST_URI']=='/index/login'){
+        echo 'class="active"';
+      }?>>
+      <?php if(!isset($_SESSION['autoriziran'])): ?>
+        <a href="<?=App::config('url')?>index/login">Autoriziraj</a>
+      <?php else: ?>
+        
+        <a href="<?=App::config('url')?>index/logout">
+          <?=$_SESSION['autoriziran']->ime?> <?=$_SESSION['autoriziran']->prezime?> Odjava
+        </a>
+      <?php endif;?>
+      </li>
+    </ul>
+  </div>
+</div>
