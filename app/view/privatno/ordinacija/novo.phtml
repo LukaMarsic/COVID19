@@ -40,12 +40,12 @@ action="<?=App::config('url')?>ordinacija/novo"
     
       <label>Doktor
       <select name="Doktor">
-          <?php foreach($Doktori as $Doktor): ?>
+          <?php foreach($doktori as $doktor): ?>
             <option <?php 
-              if($entitet->Doktor==$Doktor->sifra){
+              if($entitet->doktor==$doktor->sifra){
                 echo ' selected="selected" ';
               }
-              ?> value="<?=$Doktor->sifra ?>"><?=$Doktor->ime . ' ' . $Doktor->prezime; ?></option>
+              ?> value="<?=$doktor->sifra ?>"><?=$doktor->ime . ' ' . $doktor->prezime; ?></option>
           <?php endforeach; ?>
         </select>
       </label>

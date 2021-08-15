@@ -1,7 +1,7 @@
 <h1 style="font-size: 1em;">Narudzbe</h1>
 <a href="<?=App::config('url')?>narudzbe/novo">Dodaj nove narudzbe</a>
 <ul style="list-style-type: none">
-<?php foreach($Narudzbe as $narudzbe): ?>
+<?php foreach($narudzbe as $narudzbe): ?>
     <li>
     <i title="<?php echo $narudzbe->potvrda ? 'Odobreno' : 'Nije odobreno';?>" 
         style="font-size: 1.5em; color:

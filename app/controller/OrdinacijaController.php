@@ -24,12 +24,12 @@ class OrdinacijaController extends AutorizacijaController
         array_unshift($this->narudzbe,$s);
 
 
-        $this->Doktor=Doktor::ucitajSve();
+        $this->doktor=Doktor::ucitajSve();
         $s=new stdClass();
         $s->sifra=-1;
         $s->ime='Odaberite';
         $s->prezime='doktora';
-        array_unshift($this->Doktor,$s);
+        array_unshift($this->doktor,$s);
     }
 
     public function index()
@@ -159,7 +159,7 @@ class OrdinacijaController extends AutorizacijaController
             'entitet'=>$this->entitet,
             'poruka'=>$this->poruka,
             'narudzbe'=>$this->narudzbe,
-            'doktor'=>$this->Doktor
+            'doktor'=>$this->doktor
         ]);
     }
 
