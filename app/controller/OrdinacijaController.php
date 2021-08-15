@@ -10,18 +10,18 @@ class OrdinacijaController extends AutorizacijaController
     
     private $entitet=null;
     private $poruka='';
-    private $Narudzbe=null;
+    private $narudzbe=null;
     private $doktor=null;
 
     public function __construct()
     {
         parent::__construct();
-        $this->Narudzbe=Narudzbe::ucitajSve();
+        $this->narudzbe=narudzbe::ucitajSve();
         
         $s=new stdClass();
         $s->sifra=-1;
-        $s->naziv='Odaberite Narudzbe';
-        array_unshift($this->Narudzbe,$s);
+        $s->naziv='Odaberite narudzbe';
+        array_unshift($this->narudzbe,$s);
 
 
         $this->Doktor=Doktor::ucitajSve();
@@ -131,7 +131,7 @@ class OrdinacijaController extends AutorizacijaController
     {
         $this->entitet = new stdClass();
         $this->entitet->naziv='';
-        $this->entitet->Narudzbe=-1;
+        $this->entitet->narudzbe=-1;
         $this->entitet->doktor=-1;
         $this->entitet->datumpocetka=date('Y-m-d\TH:i');
         $this->poruka='Unesite tražene podatke';
@@ -143,7 +143,7 @@ class OrdinacijaController extends AutorizacijaController
         $this->view->render($this->viewDir . 'promjena',[
             'entitet'=>$this->entitet,
             'poruka'=>$this->poruka,
-            'Narudzbe'=>$this->Narudzbe,
+            'narudzbe'=>$this->narudzbe,
             'doktor'=>$this->doktor,
             'css'=>'<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">',
             'js'=>'<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -158,7 +158,7 @@ class OrdinacijaController extends AutorizacijaController
         $this->view->render($this->viewDir . 'novo',[
             'entitet'=>$this->entitet,
             'poruka'=>$this->poruka,
-            'Narudzbe'=>$this->Narudzbe,
+            'narudzbe'=>$this->narudzbe,
             'doktor'=>$this->Doktor
         ]);
     }
@@ -166,7 +166,7 @@ class OrdinacijaController extends AutorizacijaController
     private function kontrola()
     {
         $this->kontrolaNaziv();
-        $this->kontrolaNarudzbe();
+        $this->kontrolanarudzbe();
         $this->kontroladoktori();
     }
 
@@ -181,10 +181,10 @@ class OrdinacijaController extends AutorizacijaController
         }
     }
 
-    private function kontrolaNarudzbe()
+    private function kontrolanarudzbe()
     {
-        if($this->entitet->Narudzbe==-1){
-            throw new Exception('Narudzbe obavezno');
+        if($this->entitet->narudzbe==-1){
+            throw new Exception('narudzbe obavezno');
         }
     }
 

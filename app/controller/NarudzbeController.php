@@ -7,7 +7,7 @@ class NarudzbeController extends AutorizacijaController
                         . 'Narudzbe'
                         . DIRECTORY_SEPARATOR;
 
-    private $Narudzbe=null;
+    private $narudzbe=null;
     private $poruka='';
 
     public function index()
@@ -24,11 +24,11 @@ class NarudzbeController extends AutorizacijaController
             return;
         }
 
-        $this->Narudzbe = (object) $_POST;
+        $this->narudzbe = (object) $_POST;
         if(!$this->kontrolaNaziv()){return;}
         if(!$this->kontrolaTrajanje()){return;}
         if(!$this->kontrolaPotvrde()){return;}
-        Narudzbe::dodajNovi($this->Narudzbe);
+        Narudzbe::dodajNovi($this->narudzbe);
         $this->index();
     }
 
@@ -45,7 +45,7 @@ class NarudzbeController extends AutorizacijaController
             $this->promjenaView();
             return;
         }
-        $this->Narudzbe = (object) $_POST;
+        $this->narudzbe = (object) $_POST;
         if(!$this->kontrolaNaziv()){return;}
         if(!$this->kontrolaTrajanje()){return;}
         // neću odraditi na promjeni kontrolu cijene
@@ -67,11 +67,11 @@ class NarudzbeController extends AutorizacijaController
       
         private function noviNarudzbe()
         {
-            $this->Narudzbe = new stdClass();
-            $this->Narudzbe->naziv='';
-            $this->Narudzbe->trajanje=10;
-            $this->Narudzbe->Potvrde=1000;
-            $this->Narudzbe->potvrda='0';
+            $this->narudzbe = new stdClass();
+            $this->narudzbe->naziv='';
+            $this->narudzbe->trajanje=10;
+            $this->narudzbe->potvrde=1000;
+            $this->narudzbe->potvrda='0';
             $this->poruka='Unesite tražene podatke';
             $this->novoView();
         }
@@ -79,7 +79,7 @@ class NarudzbeController extends AutorizacijaController
         private function novoView()
         {
             $this->view->render($this->viewDir . 'novo',[
-                'Narudzbe'=>$this->Narudzbe,
+                'narudzbe'=>$this->narudzbe,
                 'poruka'=>$this->poruka
             ]);
         }
@@ -87,7 +87,7 @@ class NarudzbeController extends AutorizacijaController
         private function promjenaView()
         {
             $this->view->render($this->viewDir . 'promjena',[
-                'Narudzbe'=>$this->Narudzbe,
+                'narudzbe'=>$this->narudzbe,
                 'poruka'=>$this->poruka
             ]);
         }
@@ -111,8 +111,8 @@ class NarudzbeController extends AutorizacijaController
 
         private function kontrolaTrajanje()
         {
-            if(!is_numeric($this->Narudzbe->trajanje)
-                || ((int)$this->Narudzbe->trajanje)<=0){
+            if(!is_numeric($this->narudzbe->trajanje)
+                || ((int)$this->narudzbe->trajanje)<=0){
                     $this->poruka='Trajanje mora biti cijeli pozitivni broj';
                 $this->novoView();
                 return false;
@@ -122,10 +122,10 @@ class NarudzbeController extends AutorizacijaController
         
         private function kontrolaPotvrde()
         {
-            $this->Narudzbe->Potvrde=str_replace(',','.',$this->Narudzbe->Potvrde);
-        if(!is_numeric($this->Narudzbe->Potvrde)
-              || ((float)$this->Narudzbe->Potvrde)<=0){
-                $this->poruka='Potvrde mora biti pozitivni broj';
+            $this->narudzbe->potvrde=str_replace(',','.',$this->narudzbe->potvrde);
+        if(!is_numeric($this->narudzbe->potvrde)
+              || ((float)$this->narudzbe->potvrde)<=0){
+                $this->poruka='Potvrda mora biti valjana';
               $this->novoView();
               return false;
         }

@@ -6,7 +6,7 @@ class DoktorController extends AutorizacijaController
 {
     private $viewDir = 'privatno'
                         . DIRECTORY_SEPARATOR
-                        . 'Doktor'
+                        . 'doktor'
                         . DIRECTORY_SEPARATOR;
     
     private $entitet=null;
@@ -68,7 +68,7 @@ class DoktorController extends AutorizacijaController
             return;
         }
         Doktor::obrisiPostojeci($_GET['sifra']);
-        header('location: ' . App::config('url') . 'Doktor/index');
+        header('location: ' . App::config('url') . 'doktor/index');
        
     }
 
