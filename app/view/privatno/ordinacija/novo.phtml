@@ -12,14 +12,14 @@ action="<?=App::config('url')?>ordinacija/novo"
         </label>
       </div>
     <div class="cell large-6">
-    <label>Narudzbe
-        <select name="Narudzbe">
-          <?php foreach($Narudzbe as $narudzbe): ?>
+    <label>narudzbe
+        <select name="narudzbe">
+          <?php foreach($narudzbe as $narudzba): ?>
             <option <?php 
-              if($entitet->Narudzbe==$narudzbe->sifra){
+              if($entitet->narudzbe==$narudzba->sifra){
                 echo ' selected="selected" ';
               }
-              ?> value="<?=$Narudzbe->sifra ?>"><?=$Narudzbe->naziv ?></option>
+              ?> value="<?=$narudzbe->sifra ?>"><?=$narudzbe->naziv ?></option>
           <?php endforeach; ?>
         </select>
       </label>
@@ -38,9 +38,9 @@ action="<?=App::config('url')?>ordinacija/novo"
     </div>
     <div class="cell large-6">
     
-      <label>Doktor
-      <select name="Doktor">
-          <?php foreach($doktori as $doktor): ?>
+      <label>doktor
+      <select name="doktor">
+          <?php foreach($doktor as $doktor): ?>
             <option <?php 
               if($entitet->doktor==$doktor->sifra){
                 echo ' selected="selected" ';

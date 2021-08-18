@@ -1,10 +1,10 @@
 <?php
 
-class NarudzbeController extends AutorizacijaController
+class narudzbeController extends AutorizacijaController
 {
     private $viewDir = 'privatno'
                         . DIRECTORY_SEPARATOR
-                        . 'Narudzbe'
+                        . 'narudzbe'
                         . DIRECTORY_SEPARATOR;
 
     private $narudzbe=null;
@@ -13,14 +13,14 @@ class NarudzbeController extends AutorizacijaController
     public function index()
     {
         $this->view->render($this->viewDir . 'index',[
-            'Narudzbe'=>Narudzbe::ucitajSve()
+            'narudzbe'=>narudzbe::ucitajSve()
         ]);
     }
 
     public function novo()
     {
         if($_SERVER['REQUEST_METHOD']==='GET'){
-            $this->noviNarudzbe();
+            $this->novinarudzbe();
             return;
         }
 
@@ -28,7 +28,7 @@ class NarudzbeController extends AutorizacijaController
         if(!$this->kontrolaNaziv()){return;}
         if(!$this->kontrolaTrajanje()){return;}
         if(!$this->kontrolaPotvrde()){return;}
-        Narudzbe::dodajNovi($this->narudzbe);
+        narudzbe::dodajNovi($this->narudzbe);
         $this->index();
     }
 
@@ -40,16 +40,16 @@ class NarudzbeController extends AutorizacijaController
                $ic->logout();
                return;
             }
-            $this->Narudzbe = Narudzbe::ucitaj($_GET['sifra']);
+            $this->narudzbe = narudzbe::ucitaj($_GET['sifra']);
             $this->poruka='Promjenite željene podatke';
-            $this->promjenaView();
+            $this->promjenaview();
             return;
         }
         $this->narudzbe = (object) $_POST;
         if(!$this->kontrolaNaziv()){return;}
         if(!$this->kontrolaTrajanje()){return;}
         // neću odraditi na promjeni kontrolu cijene
-        Narudzbe::promjeniPostojeci($this->Narudzbe);
+        narudzbe::promjeniPostojeci($this->narudzbe);
         $this->index();
         }
 
@@ -60,12 +60,12 @@ class NarudzbeController extends AutorizacijaController
                 $ic->logout();
                 return;
             }
-            Narudzbe::obrisiPostojeci($_GET['sifra']);
-            header('location: ' . App::config('url') . 'Narudzbe/index');
+            narudzbe::obrisiPostojeci($_GET['sifra']);
+            header('location: ' . App::config('url') . 'narudzbe/index');
            
         }
       
-        private function noviNarudzbe()
+        private function novinarudzbe()
         {
             $this->narudzbe = new stdClass();
             $this->narudzbe->naziv='';
@@ -73,10 +73,10 @@ class NarudzbeController extends AutorizacijaController
             $this->narudzbe->potvrde=1000;
             $this->narudzbe->potvrda='0';
             $this->poruka='Unesite tražene podatke';
-            $this->novoView();
+            $this->novoview();
         }
        
-        private function novoView()
+        private function novoview()
         {
             $this->view->render($this->viewDir . 'novo',[
                 'narudzbe'=>$this->narudzbe,
@@ -84,7 +84,7 @@ class NarudzbeController extends AutorizacijaController
             ]);
         }
     
-        private function promjenaView()
+        private function promjenaview()
         {
             $this->view->render($this->viewDir . 'promjena',[
                 'narudzbe'=>$this->narudzbe,
@@ -95,15 +95,15 @@ class NarudzbeController extends AutorizacijaController
     
         private function kontrolaNaziv()
         {
-            if(strlen(trim($this->Narudzbe->naziv))===0){
+            if(strlen(trim($this->narudzbe->naziv))===0){
                 $this->poruka='Naziv obavezno';
-                $this->novoView();
+                $this->novoview();
                 return false;
              }
      
-             if(strlen(trim($this->Narudzbe->naziv))>50){
+             if(strlen(trim($this->narudzbe->naziv))>50){
                 $this->poruka='Naziv ne može imati više od 50 znakova';
-                $this->novoView();
+                $this->novoview();
                 return false;
              }
              return true;
@@ -114,7 +114,7 @@ class NarudzbeController extends AutorizacijaController
             if(!is_numeric($this->narudzbe->trajanje)
                 || ((int)$this->narudzbe->trajanje)<=0){
                     $this->poruka='Trajanje mora biti cijeli pozitivni broj';
-                $this->novoView();
+                $this->novoview();
                 return false;
           }
              return true;
@@ -126,7 +126,7 @@ class NarudzbeController extends AutorizacijaController
         if(!is_numeric($this->narudzbe->potvrde)
               || ((float)$this->narudzbe->potvrde)<=0){
                 $this->poruka='Potvrda mora biti valjana';
-              $this->novoView();
+              $this->novoview();
               return false;
         }
          return true;

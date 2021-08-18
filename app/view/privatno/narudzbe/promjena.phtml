@@ -1,21 +1,21 @@
 <form class="log-in-form" 
-    action="<?=App::config('url')?>Narudzbe/promjena"
+    action="<?=App::config('url')?>narudzbe/promjena"
     method="POST">
-  <h4 class="text-center">Promjena postojeće Narudzbe</h4>
+  <h4 class="text-center">Promjena postojeće narudzbe</h4>
   <label>Naziv
-    <input type="text" name="naziv" value="<?=$Narudzbe->naziv?>">
+    <input type="text" name="naziv" value="<?=$narudzbe->naziv?>">
   </label>
 
 
   <div class="grid-x grid-padding-x">
   <div class="cell large-4">
   <label>Trajanje
-    <input type="number" min="1" max="320" name="trajanje" value="<?=$Narudzbe->trajanje?>">
+    <input type="number" min="1" max="320" name="trajanje" value="<?=$narudzbe->trajanje?>">
   </label>
   </div>
   <div class="cell large-4">
   <label>potvrde
-    <input type="text" name="potvrde" value="<?=$Narudzbe->potvrde?>">
+    <input type="text" name="potvrde" value="<?=$narudzbe->potvrde?>">
   </label>
   </div>
   <div class="cell large-4">
@@ -23,7 +23,7 @@
         <select name="potvrda">
         <option 
         <?php 
-        if($Narudzbe->potvrda==='1'){
+        if($narudzbe->potvrda==='1'){
             echo ' selected="selected" ';
         }
         ?>
@@ -32,7 +32,7 @@
 
         <option 
         <?php 
-        if($Narudzbe->potvrda==='0'){
+        if($narudzbe->potvrda==='0'){
             echo ' selected="selected" ';
         }
         ?>
@@ -47,11 +47,11 @@
 <div class="grid-x grid-padding-x">
   <div class="cell small-6 medium-6 large-6">
     <a class="alert button expanded" 
-        href="<?=App::config('url')?>Narudzbe/index">Nazad</a>
+        href="<?=App::config('url')?>narudzbe/index">Nazad</a>
   </div>
   <div class="cell small-6 medium-6 large-6">
     <input type="submit" class="button expanded" value="Promjena"></input>
   </div>
 </div>
-<input type="hidden" name="sifra" value="<?=$Narudzbe->sifra?>">
+<input type="hidden" name="sifra" value="<?=$narudzbe->sifra?>">
 </form>

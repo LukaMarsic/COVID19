@@ -39,7 +39,7 @@ action="<?=App::config('url')?>ordinacija/promjena"
     <div class="cell large-6">
     <label>doktor
       <select name="doktor">
-          <?php foreach($doktori as $doktor): ?>
+          <?php foreach($doktor as $doktor): ?>
             <option <?php 
               if($entitet->doktor==$doktor->sifra){
                 echo ' selected="selected" ';
@@ -59,12 +59,12 @@ action="<?=App::config('url')?>ordinacija/promjena"
       <table>
         <thead>
           <tr>
-            <th>Radnik</th>
+            <th>narudzbe</th>
             <th>Stimulacija</th>
           </tr>
         </thead>
-        <tbody id="Radnici">
-        <?php foreach ($entitet->Radnik as $red):
+        <tbody id="narudzbe">
+        <?php foreach ($entitet->narudzbe as $red):
           
     
 

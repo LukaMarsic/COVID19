@@ -83,7 +83,7 @@ class RadnikController extends AutorizacijaController
             $this->index();
         } catch (Exception $e) {
             $this->poruka=$e->getMessage();
-            $this->novoView();
+            $this->novoview();
         }       
     }
 
@@ -97,7 +97,7 @@ class RadnikController extends AutorizacijaController
             }
             $this->entitet = Radnik::ucitaj($_GET['sifra']);
             $this->poruka='Promjenite željene podatke';
-            $this->promjenaView();
+            $this->promjenaview();
             return;
         }
         $this->entitet = (object) $_POST;
@@ -107,7 +107,7 @@ class RadnikController extends AutorizacijaController
             $this->index();
         } catch (Exception $e) {
             $this->poruka=$e->getMessage();
-            $this->promjenaView();
+            $this->promjenaview();
         }       
     }
 
@@ -141,10 +141,10 @@ class RadnikController extends AutorizacijaController
         $this->entitet->oib='';
         $this->entitet->brojugovora='';
         $this->poruka='Unesite tražene podatke';
-        $this->novoView();
+        $this->novoview();
     }
 
-    private function promjenaView()
+    private function promjenaview()
     {
         $this->view->render($this->viewDir . 'promjena',[
             'entitet'=>$this->entitet,
@@ -153,7 +153,7 @@ class RadnikController extends AutorizacijaController
     }
 
 
-    private function novoView()
+    private function novoview()
     {
         $this->view->render($this->viewDir . 'novo',[
             'entitet'=>$this->entitet,

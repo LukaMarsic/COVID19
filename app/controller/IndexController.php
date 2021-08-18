@@ -19,7 +19,7 @@ class IndexController extends Controller
 
     public function login()
     {
-        $this->loginView('','');
+        $this->loginview('','');
     }
 
     public function logout()
@@ -37,12 +37,12 @@ class IndexController extends Controller
         }
 
         if(strlen(trim($_POST['email']))===0){
-            $this->loginView('','Obavezno email');
+            $this->loginview('','Obavezno email');
             return;
         }
 
         if(strlen(trim($_POST['lozinka']))===0){
-            $this->loginView($_POST['email'],'Obavezno lozinka');
+            $this->loginview($_POST['email'],'Obavezno lozinka');
             return;
         }
 
@@ -56,12 +56,12 @@ class IndexController extends Controller
         $rezultat = $izraz->fetch();
 
         if($rezultat==null){
-            $this->loginView($_POST['email'],'Email ne postoji u bazi');
+            $this->loginview($_POST['email'],'Email ne postoji u bazi');
             return;
         }
 
         if(!password_verify($_POST['lozinka'],$rezultat->lozinka)){
-            $this->loginView($_POST['email'],'Kombinacija email i lozinka ne odgovaraju');
+            $this->loginview($_POST['email'],'Kombinacija email i lozinka ne odgovaraju');
             return;
         }
 
@@ -72,7 +72,7 @@ class IndexController extends Controller
 
     }
 
-    private function loginView($email,$poruka)
+    private function loginview($email,$poruka)
     {
         $this->view->render('login',[
             'email'=>$email,
