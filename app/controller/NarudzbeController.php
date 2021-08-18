@@ -48,7 +48,7 @@ class narudzbeController extends AutorizacijaController
         $this->narudzbe = (object) $_POST;
         if(!$this->kontrolaNaziv()){return;}
         if(!$this->kontrolaTrajanje()){return;}
-        // neću odraditi na promjeni kontrolu cijene
+        
         narudzbe::promjeniPostojeci($this->narudzbe);
         $this->index();
         }
@@ -70,8 +70,8 @@ class narudzbeController extends AutorizacijaController
             $this->narudzbe = new stdClass();
             $this->narudzbe->naziv='';
             $this->narudzbe->trajanje=10;
-            $this->narudzbe->potvrde=1000;
-            $this->narudzbe->potvrda='0';
+            $this->narudzbe->datum=1000;
+            $this->narudzbe->potvrde='0';
             $this->poruka='Unesite tražene podatke';
             $this->novoview();
         }
