@@ -13,7 +13,7 @@ class narudzbeController extends AutorizacijaController
     public function index()
     {
         $this->view->render($this->viewDir . 'index',[
-            'narudzbe'=>narudzbe::ucitajSve()
+            'narudzbe'=>Narudzbe::ucitajSve()
         ]);
     }
 
@@ -27,8 +27,8 @@ class narudzbeController extends AutorizacijaController
         $this->narudzbe = (object) $_POST;
         if(!$this->kontrolaNaziv()){return;}
         if(!$this->kontrolaTrajanje()){return;}
-        if(!$this->kontrolaDoza()){return;}
-        narudzbe::dodajNovi($this->narudzbe);
+        
+        Narudzbe::dodajNovi($this->narudzbe);
         $this->index();
     }
 
@@ -40,7 +40,7 @@ class narudzbeController extends AutorizacijaController
                $ic->logout();
                return;
             }
-            $this->narudzbe = narudzbe::ucitaj($_GET['sifra']);
+            $this->narudzbe = Narudzbe::ucitaj($_GET['sifra']);
             $this->poruka='Promjenite željene podatke';
             $this->promjenaview();
             return;
@@ -49,7 +49,7 @@ class narudzbeController extends AutorizacijaController
         if(!$this->kontrolaNaziv()){return;}
         if(!$this->kontrolaTrajanje()){return;}
         
-        narudzbe::promjeniPostojeci($this->narudzbe);
+        Narudzbe::promjeniPostojeci($this->narudzbe);
         $this->index();
         }
 
@@ -60,7 +60,7 @@ class narudzbeController extends AutorizacijaController
                 $ic->logout();
                 return;
             }
-            narudzbe::obrisiPostojeci($_GET['sifra']);
+            Narudzbe::obrisiPostojeci($_GET['sifra']);
             header('location: ' . App::config('url') . 'narudzbe/index');
            
         }
@@ -70,7 +70,7 @@ class narudzbeController extends AutorizacijaController
             $this->narudzbe = new stdClass();
             $this->narudzbe->naziv='';
             $this->narudzbe->trajanje=10;
-            $this->narudzbe->doza=10;
+            $this->narudzbe->doza=1;
             $this->narudzbe->placanje='0';
             $this->poruka='Unesite tražene podatke';
             $this->novoview();

@@ -74,10 +74,10 @@ alter table osoblje add foreign key (radnik) references radnik(sifra);
 
 #1
 insert into narudzbe (sifra,naziv,trajanje,doza,placanje)
-values (null,'narudzbe',10,null,true);
+values (null,'narudzbe',10,1,true);
 
 insert into narudzbe (sifra,naziv,trajanje,doza,placanje)
-values (null,'izolacija',30,null,true);
+values (null,'izolacija',30,1,true);
 
 #2
 insert into osoba(sifra,ime,prezime,oib,email)
