@@ -27,7 +27,7 @@ create table narudzbe(
     sifra int not null primary key auto_increment,
     naziv varchar(60) not null,
     trajanje int not null,
-    doza decimal(18,2),
+    doza int,
     placanje boolean
 );
 

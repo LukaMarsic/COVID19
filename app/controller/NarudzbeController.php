@@ -70,7 +70,7 @@ class narudzbeController extends AutorizacijaController
             $this->narudzbe = new stdClass();
             $this->narudzbe->naziv='';
             $this->narudzbe->trajanje=10;
-            $this->narudzbe->doza=1000;
+            $this->narudzbe->doza=10;
             $this->narudzbe->placanje='0';
             $this->poruka='Unesite tražene podatke';
             $this->novoview();
@@ -122,10 +122,10 @@ class narudzbeController extends AutorizacijaController
         
         private function kontroladoza()
         {
-            $this->narudzbe->doza=str_replace(',','.',$this->narudzbe->potvrde);
+            $this->narudzbe->doza=str_replace(',','.',$this->narudzbe->doza);
         if(!is_numeric($this->narudzbe->doza)
               || ((float)$this->narudzbe->doza)<=0){
-                $this->poruka='doza mora biti valjana';
+                $this->poruka='Doza mora biti valjana';
               $this->novoview();
               return false;
         }
