@@ -36,8 +36,8 @@ class narudzbe
         $veza = DB::getInstanca();
         $izraz=$veza->prepare('
         
-            insert into narudzbe (naziv,trajanje,doza,placanje)
-            values (:naziv,:trajanje,:doza,:placanje)
+            insert into narudzbe (sifra,naziv,trajanje,doza,placanje)
+            values (sifra,:naziv,:trajanje,:doza,:placanje)
         
         ');
         $izraz->execute((array)$narudzbe);

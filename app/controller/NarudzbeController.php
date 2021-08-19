@@ -13,7 +13,7 @@ class narudzbeController extends AutorizacijaController
     public function index()
     {
         $this->view->render($this->viewDir . 'index',[
-            'narudzbe'=>Narudzbe::ucitajSve()
+            'narudzbe'=>narudzbe::ucitajSve()
         ]);
     }
 
@@ -28,7 +28,7 @@ class narudzbeController extends AutorizacijaController
         if(!$this->kontrolaNaziv()){return;}
         if(!$this->kontrolaTrajanje()){return;}
         
-        Narudzbe::dodajNovi($this->narudzbe);
+        narudzbe::dodajNovi($this->narudzbe);
         $this->index();
     }
 
@@ -40,7 +40,7 @@ class narudzbeController extends AutorizacijaController
                $ic->logout();
                return;
             }
-            $this->narudzbe = Narudzbe::ucitaj($_GET['sifra']);
+            $this->narudzbe = narudzbe::ucitaj($_GET['sifra']);
             $this->poruka='Promjenite željene podatke';
             $this->promjenaview();
             return;
@@ -49,7 +49,7 @@ class narudzbeController extends AutorizacijaController
         if(!$this->kontrolaNaziv()){return;}
         if(!$this->kontrolaTrajanje()){return;}
         
-        Narudzbe::promjeniPostojeci($this->narudzbe);
+        narudzbe::promjeniPostojeci($this->narudzbe);
         $this->index();
         }
 
@@ -60,7 +60,7 @@ class narudzbeController extends AutorizacijaController
                 $ic->logout();
                 return;
             }
-            Narudzbe::obrisiPostojeci($_GET['sifra']);
+            narudzbe::obrisiPostojeci($_GET['sifra']);
             header('location: ' . App::config('url') . 'narudzbe/index');
            
         }

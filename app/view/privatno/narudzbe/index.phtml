@@ -1,11 +1,19 @@
-<h1 style="font-size: 1em;">Narudzbe</h1>
-<a href="<?=App::config('url')?>narudzbe/novo">Dodaj nove narudzbe</a>
+<h2 style="font-size: 1em;">NARUDZBE</h2>
+<a href="<?=App::config('url')?>narudzbe/novo">NOVA NARUDZBA</a>
 <ul style="list-style-type: none">
+
+
+
 <?php foreach($narudzbe as $narudzbe): ?>
     <li>
-    <i title="<?php echo $narudzbe->placanje ? 'Placeno' : 'Nije placeno';?>" 
+    <i title="<?php echo $narudzbe->placanje?>" 
         style="font-size: 1.5em; color:
-        <?php echo $narudzbe->placanje ? 'green' : 'red';?>" 
+       
+       
+       
+       
+       
+       <?php echo $narudzbe->placanje ? 'green' : 'red';?>" 
         class="fas fa-certificate"></i>
         <span style="font-size: 1.5em;">
         <?=$narudzbe->naziv?> 
@@ -13,7 +21,10 @@
         <a href="<?=App::config('url')?>narudzbe/promjena?sifra=<?=$narudzbe->sifra?>">
         <i title="promjena" class="fas fa-2x fa-pencil-alt"></i>
         </a>
-        <?php if($narudzbe->ukupnoordinacija==0): ?>
+
+
+
+        <?php if($narudzbe->placanje): ?>
             <a href="<?=App::config('url')?>narudzbe/brisanje?sifra=<?=$narudzbe->sifra?>"
             onclick="return confirm('Sigurno obrisati <?=$narudzbe->naziv?>?');">
             <i title="brisanje" style="color: red" class="fas fa-trash-alt"></i></a>
