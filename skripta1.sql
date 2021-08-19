@@ -27,8 +27,8 @@ create table narudzbe(
     sifra int not null primary key auto_increment,
     naziv varchar(60) not null,
     trajanje int not null,
-    narudzbe decimal(18,2),
-    narudzba boolean
+    doza decimal(18,2),
+    placanje boolean
 );
 
 create table ordinacija(
@@ -73,10 +73,10 @@ alter table osoblje add foreign key (ordinacija) references ordinacija(sifra);
 alter table osoblje add foreign key (radnik) references radnik(sifra);
 
 #1
-insert into narudzbe (sifra,naziv,trajanje,narudzbe,narudzba)
+insert into narudzbe (sifra,naziv,trajanje,doza,placanje)
 values (null,'narudzbe',10,null,true);
 
-insert into narudzbe (sifra,naziv,trajanje,narudzbe,narudzba)
+insert into narudzbe (sifra,naziv,trajanje,doza,placanje)
 values (null,'izolacija',30,null,true);
 
 #2

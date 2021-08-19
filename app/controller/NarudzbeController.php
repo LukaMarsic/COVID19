@@ -27,7 +27,7 @@ class narudzbeController extends AutorizacijaController
         $this->narudzbe = (object) $_POST;
         if(!$this->kontrolaNaziv()){return;}
         if(!$this->kontrolaTrajanje()){return;}
-        if(!$this->kontrolaPotvrde()){return;}
+        if(!$this->kontrolaDoza()){return;}
         narudzbe::dodajNovi($this->narudzbe);
         $this->index();
     }
@@ -70,8 +70,8 @@ class narudzbeController extends AutorizacijaController
             $this->narudzbe = new stdClass();
             $this->narudzbe->naziv='';
             $this->narudzbe->trajanje=10;
-            $this->narudzbe->datum=1000;
-            $this->narudzbe->potvrde='0';
+            $this->narudzbe->doza=1000;
+            $this->narudzbe->placanje='0';
             $this->poruka='Unesite tražene podatke';
             $this->novoview();
         }
@@ -120,12 +120,12 @@ class narudzbeController extends AutorizacijaController
              return true;
         }
         
-        private function kontrolaPotvrde()
+        private function kontroladoza()
         {
-            $this->narudzbe->potvrde=str_replace(',','.',$this->narudzbe->potvrde);
-        if(!is_numeric($this->narudzbe->potvrde)
-              || ((float)$this->narudzbe->potvrde)<=0){
-                $this->poruka='Potvrda mora biti valjana';
+            $this->narudzbe->doza=str_replace(',','.',$this->narudzbe->potvrde);
+        if(!is_numeric($this->narudzbe->doza)
+              || ((float)$this->narudzbe->doza)<=0){
+                $this->poruka='doza mora biti valjana';
               $this->novoview();
               return false;
         }

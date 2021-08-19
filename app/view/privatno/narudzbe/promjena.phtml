@@ -14,16 +14,16 @@
   </label>
   </div>
   <div class="cell large-4">
-  <label>Datum
-    <input type="text" name="datumm" value="<?=$narudzbe->datum?>">
+  <label>Doza
+    <input type="text" name="doza" value="<?=$narudzbe->doza?>">
   </label>
   </div>
   <div class="cell large-4">
-  <label>Potvrda
-        <select name="potvrda">
+  <label>Placanje
+        <select name="placanje">
         <option 
         <?php 
-        if($narudzbe->potvrda==='1'){
+        if($narudzbe->placanje==='1'){
             echo ' selected="selected" ';
         }
         ?>
@@ -32,7 +32,7 @@
 
         <option 
         <?php 
-        if($narudzbe->potvrda==='0'){
+        if($narudzbe->placanje==='0'){
             echo ' selected="selected" ';
         }
         ?>
