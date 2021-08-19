@@ -54,13 +54,10 @@ action="<?=App::config('url')?>ordinacija/promjena"
   <div class="grid-x grid-padding-x">
     <div class="cell">
       <hr />
-      <input type="text" id="uvjet"
-            placeholder="Unesite dio imena ili prezimena ili OIB-a">
+      
       <table>
         <thead>
-          <tr>
-            <th>Narudzbe</th>
-          </tr>
+          
         </thead>
         <tbody id="narudzbe">
         <?php foreach ($entitet->narudzbe as $red):
