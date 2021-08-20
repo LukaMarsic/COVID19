@@ -37,7 +37,7 @@ action="<?=App::config('url')?>ordinacija/promjena"
       </label>
     </div>
     <div class="cell large-6">
-    <label>doktor
+    <label>Doktor
       <select name="doktor">
           <?php foreach($doktor as $doktor): ?>
             <option <?php 
@@ -54,10 +54,13 @@ action="<?=App::config('url')?>ordinacija/promjena"
   <div class="grid-x grid-padding-x">
     <div class="cell">
       <hr />
-      
+      <input type="text" id="uvjet"
+            placeholder="Unesite dio imena ili prezimena ili OIB-a">
       <table>
         <thead>
-          
+          <tr>
+            <th>Narudzbe</th>
+          </tr>
         </thead>
         <tbody id="narudzbe">
         <?php foreach ($entitet->narudzbe as $red):
