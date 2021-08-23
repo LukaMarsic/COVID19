@@ -63,11 +63,7 @@ action="<?=App::config('url')?>ordinacija/promjena"
           </tr>
         </thead>
         <tbody id="narudzbe">
-        <?php foreach ($entitet->narudzbe as $red):
-          
-    
-
-          ?>
+        <?php foreach($entitet->narudzbe as $red):?>
             <tr>
                 <td><?=$red->ime . ' ' . $red->prezime;?></td>
                 <td>
